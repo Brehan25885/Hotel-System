@@ -99,7 +99,7 @@
       <li class="header">MAIN NAVIGATION</li>
       <li class="active treeview">
         <a href="#">
-          <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+          <i class="fa fa-dashboard"></i> <span>Manage Managers</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
@@ -112,7 +112,7 @@
       <li class="treeview">
         <a href="#">
           <i class="fa fa-files-o"></i>
-          <span>Layout Options</span>
+          <span>Manage Receptionists</span>
           <span class="pull-right-container">
             <span class="label label-primary pull-right">4</span>
           </span>
@@ -126,7 +126,7 @@
       </li>
       <li>
         <a href="pages/widgets.html">
-          <i class="fa fa-th"></i> <span>Widgets</span>
+          <i class="fa fa-th"></i> <span>Manage Clients</span>
           <span class="pull-right-container">
             <small class="label pull-right bg-green">new</small>
           </span>
