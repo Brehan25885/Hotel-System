@@ -17,3 +17,9 @@ Route::get('/', function () {
 Route::get('/index', function () {
     return view('index');
 });
+Route::get('/indexManager','AdminController@index')->name('datatables');
+Route::get('clients/getData','AdminController@getData')->name('datatables.data');
+Route::get('/indexClient','AdminController@index');
+Route::get('/indexReceptionists','AdminController@index');
+
+
