@@ -17,8 +17,8 @@ class AddColsToClients extends Migration
         Schema::table('clients', function (Blueprint $table) {
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('password');
-            $table->string('national_id');
+            $table->string('mobile');
+            $table->string('country');
             $table->string('gender');
             $table->integer('recep_id')->nullable();
 
@@ -32,8 +32,6 @@ class AddColsToClients extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            Schema::dropIfExists('clients');
-        });
+        Schema::drop('clients');
     }
 }

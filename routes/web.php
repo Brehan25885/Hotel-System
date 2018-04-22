@@ -16,4 +16,18 @@ Route::get('/', function () {
 });
 Route::get('/index', function () {
     return view('index');
+    
 });
+Route::get('/indexrecep', function () {
+    return view('recep.index');
+    
+});
+Route::get('clients','ClientsController@index')->name('datatables');
+Route::get('clients/getdata','ClientsController@getdata')->name('datatables.data');
+
+/* Route::controller('datatables', 'DatatablesController', [
+    'getdata'  => 'datatables.data',
+    'index' => 'datatables',
+]); */
+
+
