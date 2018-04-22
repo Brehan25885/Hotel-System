@@ -22,5 +22,9 @@ class Admin extends Model
     {
         return $this->belongsTo(Receptionist::class);
     }
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
 
 }
