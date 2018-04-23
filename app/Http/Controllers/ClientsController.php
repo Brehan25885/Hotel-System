@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Client;
+//use Rinvex\Country\Models\Country;
 
 class ClientsController extends Controller
 {
@@ -26,7 +27,13 @@ class ClientsController extends Controller
     public function create()
     {
         //
-        return view('clients.create');
+        $allCountries = countries();
+        foreach($allCountries as $country){
+           $country['calling_code'];
+            //print_r(array_keys($country));
+        }
+        
+        return view('clients.create',['countries'=>$allCountries]);
     }
 
     /**

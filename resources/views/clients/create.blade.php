@@ -36,9 +36,10 @@
                 <div class="form-group">
                   <label>Country</label>
                   <select name="country_code" class="form-control">
-                    <option value="1">Egypt</option>
-                    <option value="2">Italy</option>
-                    <option value="3">Spain</option>
+                  @foreach ($countries as $country)
+              
+                 <option value="{{$country['calling_code']}}">{{$country['name']}}</option>
+                  @endforeach   
                    
                   </select>
                 </div>

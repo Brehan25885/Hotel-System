@@ -16,6 +16,7 @@ class ComposerStaticInit5d3f33776abc238b4a98e571ba9850f8
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
+        'fe593da70c286f8784bd16ab92f381f1' => __DIR__ . '/..' . '/rinvex/country/src/helpers.php',
         '0b47d6d4a00ca9112ba3953b49e7c9a4' => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src/helper.php',
     );
 
@@ -60,6 +61,7 @@ class ComposerStaticInit5d3f33776abc238b4a98e571ba9850f8
         ),
         'R' => 
         array (
+            'Rinvex\\Country\\' => 15,
             'Ramsey\\Uuid\\' => 12,
         ),
         'P' => 
@@ -196,6 +198,10 @@ class ComposerStaticInit5d3f33776abc238b4a98e571ba9850f8
         'Symfony\\Component\\Console\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
+        ),
+        'Rinvex\\Country\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rinvex/country/src',
         ),
         'Ramsey\\Uuid\\' => 
         array (
@@ -2910,6 +2916,9 @@ class ComposerStaticInit5d3f33776abc238b4a98e571ba9850f8
         'Ramsey\\Uuid\\UuidFactory' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidFactory.php',
         'Ramsey\\Uuid\\UuidFactoryInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidFactoryInterface.php',
         'Ramsey\\Uuid\\UuidInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidInterface.php',
+        'Rinvex\\Country\\Country' => __DIR__ . '/..' . '/rinvex/country/src/Country.php',
+        'Rinvex\\Country\\CountryLoader' => __DIR__ . '/..' . '/rinvex/country/src/CountryLoader.php',
+        'Rinvex\\Country\\CountryLoaderException' => __DIR__ . '/..' . '/rinvex/country/src/CountryLoaderException.php',
         'SebastianBergmann\\CodeCoverage\\CodeCoverage' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/CodeCoverage.php',
         'SebastianBergmann\\CodeCoverage\\CoveredCodeNotExecutedException' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Exception/CoveredCodeNotExecutedException.php',
         'SebastianBergmann\\CodeCoverage\\Driver\\Driver' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Driver/Driver.php',
