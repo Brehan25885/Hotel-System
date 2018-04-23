@@ -8,7 +8,7 @@
   <!-- Bootstrap 3.3.7 -->
   
   
-
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   <link  href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
  <link  href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">

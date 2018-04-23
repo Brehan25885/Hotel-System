@@ -18,4 +18,6 @@ Route::get('/index', function () {
     return view('index');
 });
 
+
 Route::resource('clients','ClientsController');
+Route::resource('rooms','RoomsController');

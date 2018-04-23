@@ -28,10 +28,10 @@ class ClientsController extends Controller
     {
         //
         $allCountries = countries();
-        foreach($allCountries as $country){
-           $country['calling_code'];
+        //foreach($allCountries as $country){
+           //$country['calling_code'];
             //print_r(array_keys($country));
-        }
+        //}
         
         return view('clients.create',['countries'=>$allCountries]);
     }
@@ -67,18 +67,22 @@ class ClientsController extends Controller
           //upload image
           $path=$request->file('avatar_image')->storeAs('public/avatar_images',$fileNameToStore);
      }else{
-         $fileNameToStore="ninja.jpeg";
+         $fileNameToStore=".ninja.jpeg jpeg ninja";
+         
      }
-        Client::create([
+        $data=[
             'email' => $request->email,
             'name' => $request->name,
             'password' => $request->password,
             'country_code' => $request->country_code,
             'gender' => $request->gender,
             'avatar_image' => $fileNameToStore,
-        ]);
+        ];
+        $newClient=new Client($data);
+        $newClient->save();
+        $id=$newClient->id;
 
-        return redirect('/clients')->with('success','Almost done!Wait for your confirmation email!');
+        return redirect()->route('clients.show', ['id' => $id]);
     }
 
     /**
@@ -90,6 +94,16 @@ class ClientsController extends Controller
     public function show($id)
     {
         //
+        $client=Client::find($id);
+        $cc=$client->country_code;
+        $allCountries=countries();
+        foreach($allCountries as $country){
+            if($country['calling_code']==$cc){
+                $countryName=$country['name'];
+            }   
+        }
+        
+        return view('clients.show',['client'=>$client ,'countryName'=>$countryName]);
     }
 
     /**
