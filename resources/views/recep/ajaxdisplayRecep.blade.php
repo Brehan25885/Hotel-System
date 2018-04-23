@@ -11,10 +11,12 @@
                 <th>Country</th>
                 <th>Gender</th>
                 <th>Is Approved</th>
+                <th> Edit</th>
             </tr>
           
 
         </thead>
+       
     </table>        </div>
     @stop
 
@@ -26,6 +28,7 @@ $(function() {
     $('#users-table').DataTable({
         processing: true,
         serverSide: true,
+        dom: 'Bfrtip',
         ajax: '{!! route('datatables.data') !!}',
         columns: [
             { data: 'id', name: 'id' },
@@ -34,9 +37,11 @@ $(function() {
             { data: 'mobile', name: 'mobile' },
             { data: 'country', name: 'country' },
             { data: 'gender', name: 'gender' },
-            { data: 'is_approved', name: 'is_approved' }
-
+            { data: 'is_approved', name: 'is_approved' },
+            {data: 'action', name: 'action', orderable: false, searchable: false},
+         
         ]
+     
     });
 });
 </script>

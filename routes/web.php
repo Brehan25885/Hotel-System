@@ -18,12 +18,13 @@ Route::get('/index', function () {
     return view('index');
     
 });
-Route::get('/indexrecep', function () {
+/* Route::get('/indexrecep', function () {
     return view('recep.index');
     
 });
-Route::get('clients','ClientsController@index')->name('datatables');
-Route::get('clients/getdata','ClientsController@getdata')->name('datatables.data');
+ */
+Route::get('recep','ClientsController@index')->name('datatables');
+Route::get('recep/getdata','ClientsController@getdata')->name('datatables.data');
 
 /* Route::controller('datatables', 'DatatablesController', [
     'getdata'  => 'datatables.data',
@@ -31,3 +32,22 @@ Route::get('clients/getdata','ClientsController@getdata')->name('datatables.data
 ]); */
 
 
+
+Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('/login/custom',[
+    'uses'=>"LoginController@login",
+    'as'=>'login.custom'
+]);
+Route::group(['middleware'=>'auth'],function(){
+ Route::get('/home',function () {
+    return view('home');
+    
+})->name('home');
+Route::get('/indexrecep',function () {
+    return view('recep.index');
+    
+})->name('indexrecep');
+ }); 

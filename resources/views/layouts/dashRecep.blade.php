@@ -127,7 +127,7 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          <li class="active"><a href="/clients"><i class="fa fa-circle-o"></i> Manage Clients</a></li>
+          <li class="active"><a href="/recep"><i class="fa fa-circle-o"></i> Manage Clients</a></li>
           <li><a href="index2.html"><i class="fa fa-circle-o"></i> Approved Clients</a></li>
         </ul>
       </li>

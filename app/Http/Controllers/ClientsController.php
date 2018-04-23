@@ -14,6 +14,14 @@ class ClientsController extends Controller
   }
  function getdata(){
  
-             return Datatables::of(Client::query())->make(true);
+/*              return Datatables::of(Client::query())->make(true);
+ */           
+$clients=Client::query();
+             return Datatables::of($clients)->addColumn('action', function ($client) {
+                  return '<form method="GET" action="/recep/'.$client->id.'/approve" >
+                  <button  class="btn btn-primary" > Approve </button>
+              </form>';
+              })   ->make(true); 
+              
  }
 }
