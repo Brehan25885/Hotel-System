@@ -17,3 +17,5 @@ Route::get('/', function () {
 Route::get('/index', function () {
     return view('index');
 });
+
+Route::resource('clients','ClientsController');

@@ -18,6 +18,7 @@
   <link  href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" rel="stylesheet">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+@include('inc.messages')
 @yield('content')
 </body>
  <script src="{{ asset('js/jquery.min.js') }}"></script>
