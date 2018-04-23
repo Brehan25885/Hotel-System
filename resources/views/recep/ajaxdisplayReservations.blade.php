@@ -5,13 +5,11 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th> Mobile</th>
-                <th>Country</th>
-                <th>Gender</th>
-                <th>Is Approved</th>
-                <th> Edit</th>
+                <th>Client Name</th>
+                <th>Client Accompany No</th>
+                <th> Room No</th>
+                <th>Paid Price</th>
+                
             </tr>
           
 
@@ -31,16 +29,13 @@ $(function() {
         processing: true,
         serverSide: true,
         dom: 'Bfrtip',
-        ajax: '{!! route('datatables.data') !!}',
+        ajax: '{!! route('reserve.datareservations') !!}',
         columns: [
             { data: 'id', name: 'id' },
             { data: 'name', name: 'name' },
-            { data: 'email', name: 'email' },
-            { data: 'mobile', name: 'mobile' },
-            { data: 'country', name: 'country' },
-            { data: 'gender', name: 'gender' },
-            { data: 'is_approved', name: 'is_approved' },
-            {data: 'action', name: 'action', orderable: false, searchable: false},
+            { data: 'client_accompany_no', name: 'client_accompany_no' },
+            { data: 'room_number', name: 'room_number' },
+            { data: 'paid_price', name: 'paid_price' },
          
         ]
      

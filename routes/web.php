@@ -30,7 +30,8 @@ Route::get('recep/getdata','ClientsController@getdata')->name('datatables.data')
     'getdata'  => 'datatables.data',
     'index' => 'datatables',
 ]); */
-
+Route::get('reservations','ClientsController@indexReserve')->name('reserve');
+Route::get('reservations/getdata','ClientsController@getReservations')->name('reserve.datareservations');
 
 
 Auth::routes();
@@ -51,3 +52,4 @@ Route::get('/indexrecep',function () {
     
 })->name('indexrecep');
  }); 
+ Route::get('recep/{client}/approve','ReceptionistController@approve');

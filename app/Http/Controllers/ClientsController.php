@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Client;
 use Yajra\Datatables\Datatables;
+use Auth;
 class ClientsController extends Controller
 {
       public function index()
@@ -12,6 +13,7 @@ class ClientsController extends Controller
         return view('recep.ajaxdisplayRecep');
       
   }
+
  function getdata(){
  
 /*              return Datatables::of(Client::query())->make(true);
@@ -19,9 +21,31 @@ class ClientsController extends Controller
 $clients=Client::query();
              return Datatables::of($clients)->addColumn('action', function ($client) {
                   return '<form method="GET" action="/recep/'.$client->id.'/approve" >
-                  <button  class="btn btn-primary" > Approve </button>
+                  <button class="btn btn-primary" id="approve" > Approve </button>
               </form>';
-              })   ->make(true); 
+          /*   return  '<button class="edit-modal btn btn-info"id="approve" data-id="{{$client->id}}"
+  							data-name="{{$client->name}}">
+  							<span class="glyphicon glyphicon-edit"></span> Approve
+</button>';*/
+              })   ->make(true);  
               
  }
+ public function indexReserve()
+ {
+     return view('recep.ajaxdisplayReservations');
+   
+}
+function getReservations(){
+ 
+              
+               $id = Auth::user()->id;
+               $union = Client::query() ->select(['id', 'name', 'client_accompany_no', 'room_number', 'paid_price'])
+               ->where('recep_id','=',$id); 
+    
+              
+                   return Datatables::of($union)->make(true);            
+       }
+
+
+
 }
