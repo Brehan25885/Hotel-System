@@ -10,9 +10,14 @@ class Receptionist extends Model
     protected $fillable=[
         'name',
         'email',
-        'passwword',
+        'password',
         'country',
         'gender',
+        'admin_id',
         
     ];
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class);
+    }
 }

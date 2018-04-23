@@ -9,8 +9,13 @@ class Client extends Model
     protected $fillable=[
         'name',
         'email',
-        'passwword',
-        'national_id',
+        'mobile',
+        'country',
+        'gender',
         
     ];
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class);
+    }
 }

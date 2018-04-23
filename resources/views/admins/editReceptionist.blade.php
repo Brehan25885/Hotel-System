@@ -2,25 +2,19 @@
 @section('content')
 
 
-<form method="post" action="/admins/{{$admins->id}}/update">
+<form method="post" action="/admins/{{$receptionists->id}}/update">
     {{csrf_field()}}
     
     {{method_field('PUT')}}
-  <!--  id: <input type="number" name="id" value="{{$admins->receptionist->id }}" > -->
 
-name: <input type="text" name="name" value="{{$admins->receptionist->name }}">
-email: <input type="text" name="email" value="{{$admins->receptionist->email }}">
-country: <input type="text" name="country" value="{{$admins->receptionist->country}}">
-gender: <input type="text" name="gender" value="{{$admins->receptionist->gender}}">
+name: <input type="text" name="name" value="{{$receptionists->name }}">
+email: <input type="text" name="email" value="{{$receptionists->email }}">
+country: <input type="text" name="country" value="{{$receptionists->country}}">
+gender: <input type="text" name="gender" value="{{$receptionists->gender}}">
 <br><br>
 
 
 </select>
-
-
-
-
-
 
 
 <input type="submit" value="Submit" class="btn btn-primary">

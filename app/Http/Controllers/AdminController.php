@@ -15,8 +15,7 @@ class AdminController extends Controller
       return view('admins.indexManager');
     }
     public function getDataManager(){
-        $admins = Admin::join('managers', 'admins.manager_id', '=', 'managers.id')
-            ->select(['managers.id','managers.name', 'managers.email', 'managers.password','managers.national_id'])->orderBy('admins.id')->get();
+       $admins= Manager::query();
        return Datatables::of($admins) ->addColumn('action', function ($ud) {
             return '<form method="GET" action="/admins/'.$ud->id.'/editm" >
             <button  class="btn btn-primary" > Edit </button>
@@ -29,10 +28,9 @@ public function indexRece()
     return view('admins.indexReceptionists');
 }
 public function getDataRece(){
-    $admin = Admin::join('receptionists', 'admins.receptionist_id', '=', 'receptionists.id')
-        ->select(['receptionists.id','receptionists.name', 'receptionists.email','receptionists.country','receptionists.gender'])->orderBy('admins.id')->get();
-
-    return Datatables::of($admin) ->addColumn('action', function ($ad) {
+ 
+$admin= Receptionist::query();
+    return Datatables::of($admin)->addColumn('action', function ($ad) {
         return '<form method="GET" action="/admins/'.$ad->id.'/edit" >
         <button  class="btn btn-primary" > Edit </button>
     </form>';
@@ -47,22 +45,31 @@ public function indexClient()
     return view('admins.indexClient');
 }
 public function getDataClient(){
-    $admin = Admin::join('clients', 'admins.client_id', '=', 'clients.id')
-        ->select(['clients.id','clients.name', 'clients.email', 'clients.mobile','clients.country','clients.gender'])->orderBy('admins.id')->get();
-
+   
+$admin= Client::query();
  return Datatables::of($admin) ->addColumn('action', function ($cd) {
         return '<form method="GET" action="/admins/'.$cd->id.'/editc" >
         <button  class="btn btn-primary" > Edit </button>
-    </form>';
-    })
-     ->make(true);
-   
+    </form>
+    <form method="post" action="/admins/'.$cd->id.'/deletec" >
+    {{method_field(\'DELETE\')}}
+    <button onclick="return confirm(\'are you sure\')" type="submit" class="btn btn-danger" > Delete </button>
+</form>'; })->make(true);
+
 }
+
+
+
+
+
+
 public function editRece ($id)
 {
- $admins=Admin::find($id);
- $receptionists=Receptionist::all();
- return view('admins.editReceptionist',compact('admins','receptionists'));
+ $receptionists=Receptionist::find($id);
+return view('admins.editReceptionist',[
+    'receptionists' => $receptionists
+]); 
+
 }
 
 public function updateRece(Request $request,$id){
@@ -81,9 +88,10 @@ public function updateRece(Request $request,$id){
 
 public function editManager ($id)
 {
- $admins=Admin::find($id);
- $managers=Manager::all();
- return view('admins.editManager',compact('admins','managers'));
+ $managers=Manager::find($id);
+return view('admins.editManager',[
+    'managers' => $managers
+]); 
 }
 
 public function updateManager(Request $request,$id){
@@ -92,10 +100,6 @@ public function updateManager(Request $request,$id){
     $Managers->email=$request->email;
     $Managers->national_id=$request->national_id;
     $Managers->save();
-
-
-
-  
 return view('admins.indexManager');
 
 
@@ -104,9 +108,10 @@ return view('admins.indexManager');
 
 public function editClient ($id)
 {
- $admins=Admin::find($id);
- $clients=Client::all();
- return view('admins.editClient',compact('admins','clients'));
+ $clients=Client::find($id);
+return view('admins.editClient',[
+    'clients' => $clients
+]); 
 }
 
 public function updateClient(Request $request,$id){
@@ -122,13 +127,12 @@ return view('admins.indexClient');
 
 
 }
-
-
-
 public function createRece()
         {
-            $admins = Admin::all();
-            return view('admins.createRece'); 
+        $admins = Admin::all();
+            return view('admins.createRece',[
+                'admins' => $admins
+            ]); 
             
         }
        
@@ -138,9 +142,69 @@ public function createRece()
              
             Receptionist::create([
                 'name' => $request->name,
+                'email' => $request->email,
                 'password' => $request->password,
+                'country' => $request->country,
+                'gender' => $request->gender,
+                'admin_id' => $request->admin_id
             ]);
             
-           return redirect(route('admins.indexReceptionists')); 
+           return redirect(route('datatable')); 
         }
+
+
+        public function createManager()
+        {
+        $admins = Admin::all();
+            return view('admins.createManager',[
+                'admins' => $admins
+            ]); 
+            
+        }
+       
+     public function storeManager(Request $request)
+        {
+            
+             
+            Manager::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->password,
+                'national_id' => $request->national_id,
+               'admin_id' => $request->admin_id
+            ]);
+            
+           return redirect(route('tables')); 
+        }
+
+
+        public function createClient()
+        {
+        $admins = Admin::all();
+            return view('admins.createClient',[
+                'admins' => $admins
+            ]); 
+            
+        }
+       
+     public function storeClient(Request $request)
+        {
+            
+             
+            Client::create([
+                'name' => $request->name,
+                'email' => $request->email,
+              'country' => $request->country,
+              'mobile' => $request->mobile,
+                'gender' => $request->gender,
+
+               'admin_id' => $request->admin_id,
+            ]);
+            
+           return redirect(route('datatables')); 
+        }
+
+
+      
+
 }

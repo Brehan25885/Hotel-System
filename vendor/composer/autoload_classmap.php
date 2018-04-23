@@ -9,6 +9,7 @@ return array(
     'AdminTableSeeder' => $baseDir . '/database/seeds/AdminTableSeeder.php',
     'AdminssTableSeeder' => $baseDir . '/database/seeds/AdminssTableSeeder.php',
     'App\\Admin' => $baseDir . '/app/Admin.php',
+    'App\\Client' => $baseDir . '/app/Client.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\AdminController' => $baseDir . '/app/Http/Controllers/AdminController.php',

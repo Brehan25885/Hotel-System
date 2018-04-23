@@ -10,12 +10,14 @@ class Manager extends Model
     protected $fillable=[
         'name',
         'email',
-        'passwword',
-        'mobile',
-        'country',
-        'gender',
+        'password',
+        'national_id'
         
         
     ];
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class);
+    }
 
 }

@@ -1,6 +1,7 @@
 @extends('layouts.dash')
 @section('content')
         <div class="container">
+        <a  class="btn btn-danger" href="admins/createc">Create Client</a>
         <table class="table table-bordered" id="users-table">
         <thead>
             <tr>
@@ -14,6 +15,12 @@
             </tr>
         </thead>
     </table>        </div>
+  
+  
+  
+
+  
+  
     @stop
 
        
@@ -48,5 +55,8 @@ $(function() {
         ]
     });
 });
+
+
+
 </script>
 @endpush
