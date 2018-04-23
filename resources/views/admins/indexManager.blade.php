@@ -4,9 +4,12 @@
         <table class="table table-bordered" id="users-table">
         <thead>
             <tr>
-                <th>id</th>
+                
                 <th>name</th>
-                <th>password</th>
+                <th>email</th>
+                <th>national_id</th>
+                <th></th>
+               
             </tr>
         </thead>
     </table>        </div>
@@ -30,9 +33,12 @@ $(function() {
             { data: 'created_at', name: 'created_at' },
             { data: 'updated_at', name: 'updated_at' } */
 
-         {data: 'id', name: 'managers.id'},
-            {data: 'name', name: 'managers.name'},
-          {data: 'password', name: 'managers.password'}
+         /* {data: 'id', name: 'id'}, */
+            {data: 'name', name: 'name'},
+          /* {data: 'password', name: 'password'} */
+          {data: 'email', name: 'email'},
+          {data: 'national_id', name: 'national_id'},
+          {data: 'action', name: 'action', orderable: false, searchable: false}
            
 
 

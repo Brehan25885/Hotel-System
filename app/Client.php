@@ -4,18 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Manager extends Model
+class Client extends Model
 {
-    //
     protected $fillable=[
         'name',
         'email',
         'passwword',
-        'mobile',
-        'country',
-        'gender',
-        
+        'national_id',
         
     ];
-
 }

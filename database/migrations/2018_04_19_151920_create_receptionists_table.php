@@ -20,7 +20,7 @@ class CreateReceptionistsTable extends Migration
             $table->string('password');
             $table->string('country');
             $table->string('gender');
-            $table->timestamp('created_at')->nullable();
+            $table->timestamp()->nullable();
         });
     }
 
