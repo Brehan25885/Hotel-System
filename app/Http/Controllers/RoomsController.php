@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Client;
+use App\Room;
+use Yajra\Datatables\Datatables;
 class RoomsController extends Controller
 {
     /**
@@ -14,7 +16,7 @@ class RoomsController extends Controller
     public function index()
     {
         //
-        return view('layouts.showAvailable');
+        return view('rooms.showAvailable');
     }
 
     /**
@@ -46,9 +48,13 @@ class RoomsController extends Controller
      */
     public function show($id)
     {
-        //
-    }
 
+        $client=Client::find($id);
+        $data=Room::all();
+        return view('rooms.showAvailable',['client'=>$client ,'rooms'=>$data]);
+    }
+    
+   
     /**
      * Show the form for editing the specified resource.
      *

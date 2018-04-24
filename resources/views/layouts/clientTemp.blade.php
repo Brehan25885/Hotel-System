@@ -7,16 +7,25 @@
 
   <!-- Bootstrap 3.3.7 -->
   
-  
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   <link  href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
- <link  href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+  <link  href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
 
   <link href="{{ asset('css/AdminLTE.min.css') }}"  rel="stylesheet">
-   <link  href="{{ asset('css/_all-skins.min.css') }}" rel="stylesheet">
+  <link  href="{{ asset('css/_all-skins.min.css') }}" rel="stylesheet">
   <link  href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" rel="stylesheet">
-</head>
+  
+  <script src="//code.jquery.com/jquery-1.12.3.js"></script>
+  <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+  <script
+    src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+  <link rel="stylesheet"
+    href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet"
+    href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+  
+ </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -70,10 +79,10 @@
       <ul class="sidebar-menu" data-widget="tree">
        
         <!-- Optionally, you can add icons to the links -->
-        <li ><a href="#"><i class="fa fa-link"></i> <span>My Profile</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Update Profile</span></a></li>
+        <li ><a href="/clients/{{$client->id}}"><i class="fa fa-link"></i> <span>My Profile</span></a></li>
+        <li><a href="/clients/{{$client->id}}/edit"><i class="fa fa-link"></i> <span>Edit Profile</span></a></li>
         <li><a href="#"><i class="fa fa-link"></i> <span>My Reservations</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>Make Reservation</span></a></li>
+        <li><a href="/rooms/{{$client->id}}"><i class="fa fa-link"></i> <span>Make Reservation</span></a></li>
         
       </ul>
       <!-- /.sidebar-menu -->
@@ -99,18 +108,20 @@
   <!-- /.content-wrapper -->
 
   <!-- Main Footer -->
-  <footer class="main-footer">
+ <!--<footer class="main-footer"> -->
    
     
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
-  </footer>
+   <!-- <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+  </footer> -->
+  <!-- jQuery -->
 
-</body>
- <script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/jquery.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->
  <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/adminlte.min.js') }}"></script>
+@stack('scripts');
+</body>
 </html>

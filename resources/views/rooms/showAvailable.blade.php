@@ -1,67 +1,46 @@
 
-@extends('layouts.app')
-@section('content')
+@extends('layouts.clientTemp')
+@section('mainPage')
  </br>
  </br>
-  </br>
- <div class="container">
- <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Condensed Full Width Table</h3>
+ <div class="col-md-1"></div>
+ <div class="col-md-10">
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Available Rooms </h3>
             </div>
             <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <table class="table table-condensed">
+            <div class="box-body">
+              <table id="av_rooms" class="table table-bordered">
                 <tr>
                   <th style="width: 10px">#</th>
-                  <th>Task</th>
-                  <th>Progress</th>
-                  <th style="width: 40px">Label</th>
+                  <th>Capacity</th>
+                  <th>Price</th>
+                  <th style="width: 40px">Action</th>
                 </tr>
+                <tbody>
+                @foreach($rooms as $room)
                 <tr>
-                  <td>1.</td>
-                  <td>Update software</td>
-                  <td>
-                    <div class="progress progress-xs">
-                      <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                    </div>
-                  </td>
-                  <td><span class="badge bg-red">55%</span></td>
+                   <td>{{$room->num}}</td>
+                   <td>{{$room->capacity}}</td>
+                   <td>{{$room->price}}</td>
+                   <td><button class="edit-modal btn btn-info">
+            <span class="glyphicon glyphicon-edit"></span> Make Reservation
+        </button></td>
                 </tr>
-                <tr>
-                  <td>2.</td>
-                  <td>Clean database</td>
-                  <td>
-                    <div class="progress progress-xs">
-                      <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
-                    </div>
-                  </td>
-                  <td><span class="badge bg-yellow">70%</span></td>
-                </tr>
-                <tr>
-                  <td>3.</td>
-                  <td>Cron job running</td>
-                  <td>
-                    <div class="progress progress-xs progress-striped active">
-                      <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
-                    </div>
-                  </td>
-                  <td><span class="badge bg-light-blue">30%</span></td>
-                </tr>
-                <tr>
-                  <td>4.</td>
-                  <td>Fix and squish bugs</td>
-                  <td>
-                    <div class="progress progress-xs progress-striped active">
-                      <div class="progress-bar progress-bar-success" style="width: 90%"></div>
-                    </div>
-                  </td>
-                  <td><span class="badge bg-green">90%</span></td>
-                </tr>
-              </table>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          </div>
+                @endforeach
+                </tbody>
+                </table>
+          <!-- /.box -->
+          @stop
+          @push('scripts')
 
-@endsection
+       <script type="text/javascript">
+          $(document).ready(function(){
+            $('#av_rooms').DataTable();
+          });
+       </script> 
+        @endpush
+   </div>
+   </div>
+

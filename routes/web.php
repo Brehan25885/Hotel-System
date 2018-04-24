@@ -21,3 +21,4 @@ Route::get('/index', function () {
 
 Route::resource('clients','ClientsController');
 Route::resource('rooms','RoomsController');
+Route::resource('getrooms','GetroomsController');

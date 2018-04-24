@@ -115,6 +115,9 @@ class ClientsController extends Controller
     public function edit($id)
     {
         //
+        $client=Client::find($id);
+        $allCountries = countries();
+        return view('clients.edit',['client'=>$client,'countries'=>$allCountries]);
     }
 
     /**
@@ -127,6 +130,44 @@ class ClientsController extends Controller
     public function update(Request $request, $id)
     {
         //
+         //
+         $this->validate($request,
+         [
+             'avatar_image'=>'image|nullable|max:1999'
+         ]
+     );
+ 
+      if($request->hasfile('avatar_image')){
+         //get file name with ext
+          $fileNameWithExt=$request->file('avatar_image')->getClientOriginalName();
+         //get file name only and turn it into string
+           $fileName=implode(" ",pathinfo($fileNameWithExt));
+          
+          
+         //get file ext only
+           $extension=$request->file('avatar_image')->getClientOriginalExtension();
+           
+         //new file name
+           $fileNameToStore=$fileName."_".time().".".$extension;
+          
+           //upload image
+           $path=$request->file('avatar_image')->storeAs('public/avatar_images',$fileNameToStore);
+      }
+         $data=[
+             'email' => $request->email,
+             'name' => $request->name,
+             'country_code' => $request->country_code,
+             'gender' => $request->gender
+              
+         ];
+         $newClient=Client::find($id);
+         if($request->hasfile('avatar_image')){
+           $newClient->avatar_image=$fileNameToStore;
+         }
+         $newClient->update($data);
+        
+ 
+         return redirect()->route('clients.show', ['id' => $id]);
     }
 
     /**
