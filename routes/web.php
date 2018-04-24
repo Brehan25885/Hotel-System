@@ -23,15 +23,16 @@ Route::get('/index', function () {
     
 });
  */
-Route::get('recep','ClientsController@index')->name('datatables');
-Route::get('recep/getdata','ClientsController@getdata')->name('datatables.data');
+Route::get('recep','ReceptionistController@index')->name('datatables');
+Route::get('recep/getdata','ReceptionistController@getdata')->name('datatables.data');
 
 /* Route::controller('datatables', 'DatatablesController', [
     'getdata'  => 'datatables.data',
     'index' => 'datatables',
 ]); */
-Route::get('reservations','ClientsController@indexReserve')->name('reserve');
-Route::get('reservations/getdata','ClientsController@getReservations')->name('reserve.datareservations');
+
+Route::get('reservations','ReceptionistController@indexReserve')->name('reserve');
+Route::get('reservations/getdata','ReceptionistController@getReservations')->name('reserve.datareservations');
 
 
 Auth::routes();
