@@ -20,7 +20,9 @@ class AdminController extends Controller
        return Datatables::of($admins) ->addColumn('action', function ($ud) {
             return '<form method="GET" action="/admins/'.$ud->id.'/editm" >
             <button  class="btn btn-primary" > Edit </button>
-        </form>';
+        </form>
+        <td><a class="btn btn-danger" href = "/admins/'.$ud->id.'/deletem">Delete</a></td>
+        ';
         })
          ->make(true);
        }
@@ -34,7 +36,9 @@ $admin= Receptionist::query();
     return Datatables::of($admin)->addColumn('action', function ($ad) {
         return '<form method="GET" action="/admins/'.$ad->id.'/edit" >
         <button  class="btn btn-primary" > Edit </button>
-    </form>';
+    </form>
+    <td><a class="btn btn-danger" href = "/admins/'.$ad->id.'/deleter">Delete</a></td>
+    ';
     })
      ->make(true);
   }
@@ -138,6 +142,26 @@ public function createRece()
        
      public function storeRece(Request $request)
         {
+
+            if($request->hasfile('avatar_image')){
+                //get file name with ext
+                 $fileNameWithExt=$request->file('avatar_image')->getClientOriginalName();
+                //get file name only and turn it into string
+                  $fileName=implode(" ",pathinfo($fileNameWithExt));
+                 
+                 
+                //get file ext only
+                  $extension=$request->file('avatar_image')->getClientOriginalExtension();
+                  
+                //new file name
+                  $fileNameToStore=$fileName."_".time().".".$extension;
+                 
+                  //upload image
+                  $path=$request->file('avatar_image')->storeAs('public/avatar_images',$fileNameToStore);
+             }else{
+                 $fileNameToStore="avatar.jpg";
+                 
+             }
             
              
             Receptionist::create([
@@ -146,7 +170,8 @@ public function createRece()
                 'password' => $request->password,
                 'country' => $request->country,
                 'gender' => $request->gender,
-                'admin_id' => $request->admin_id
+                'admin_id' => $request->admin_id,
+                'avatar_image' => $fileNameToStore,
             ]);
             
            return redirect(route('datatable')); 
@@ -164,6 +189,26 @@ public function createRece()
        
      public function storeManager(Request $request)
         {
+             if($request->hasfile('avatar_image')){
+                //get file name with ext
+                 $fileNameWithExt=$request->file('avatar_image')->getClientOriginalName();
+                //get file name only and turn it into string
+                  $fileName=implode(" ",pathinfo($fileNameWithExt));
+                 
+                 
+                //get file ext only
+                  $extension=$request->file('avatar_image')->getClientOriginalExtension();
+                  
+                //new file name
+                  $fileNameToStore=$fileName."_".time().".".$extension;
+                 
+                  //upload image
+                  $path=$request->file('avatar_image')->storeAs('public/avatar_images',$fileNameToStore);
+             }else{
+                 $fileNameToStore="avatar.jpg";
+                 
+             }
+
             
              
             Manager::create([
@@ -171,7 +216,9 @@ public function createRece()
                 'email' => $request->email,
                 'password' => $request->password,
                 'national_id' => $request->national_id,
-               'admin_id' => $request->admin_id
+               'admin_id' => $request->admin_id,
+               'avatar_image' => $fileNameToStore,
+
             ]);
             
            return redirect(route('tables')); 
@@ -205,7 +252,7 @@ public function createRece()
                   //upload image
                   $path=$request->file('avatar_image')->storeAs('public/avatar_images',$fileNameToStore);
              }else{
-                 $fileNameToStore=".ninja.jpeg jpeg ninja";
+                 $fileNameToStore="avatar.jpg";
                  
              }
 
@@ -218,19 +265,29 @@ public function createRece()
               'country' => $request->country,
               'mobile' => $request->mobile,
                 'gender' => $request->gender,
+                'admin_id' => $request->admin_id,
                 'avatar_image' => $fileNameToStore,
-
-               'admin_id' => $request->admin_id,
+              
             ]);
             
            return redirect(route('datatables')); 
         }
         public function destroyClient($id) {
-          //  DB::delete('delete from clien where id = ?',[$id]);
             DB::table('clients')->where('id', '=', $id)->delete();
             return redirect(route('datatables')); 
 
          }
+         public function destroyManager($id) {
+              DB::table('managers')->where('id', '=', $id)->delete();
+              return redirect(route('tables')); 
+  
+           }
+           public function destroyRece($id) {
+            DB::table('receptionists')->where('id', '=', $id)->delete();
+            return redirect(route('datatable')); 
+
+         }
+  
 
 
       

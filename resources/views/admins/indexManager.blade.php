@@ -9,6 +9,7 @@
                 <th>name</th>
                 <th>email</th>
                 <th>national_id</th>
+                <th>avatar_image</th>
                 <th></th>
                
             </tr>
@@ -39,7 +40,12 @@ $(function() {
           /* {data: 'password', name: 'password'} */
           {data: 'email', name: 'email'},
           {data: 'national_id', name: 'national_id'},
-          {data: 'action', name: 'action', orderable: false, searchable: false}
+         
+          {data: 'avatar_image', name: 'avatar_image',
+            "render": function(data, type, row) {
+        return '<img src="/storage/avatar_images/'+data+'" />';
+                 }   }, 
+                 {data: 'action', name: 'action', orderable: false, searchable: false},
            
 
 

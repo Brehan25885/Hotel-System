@@ -14,6 +14,7 @@ class Receptionist extends Model
         'country',
         'gender',
         'admin_id',
+        'avatar_image'
         
     ];
     public function admin()

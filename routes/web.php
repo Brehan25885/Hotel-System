@@ -38,6 +38,8 @@ Route::post('adminsc','AdminController@storeClient');
 /* Route::delete('/admins/{admin}/deletec','AdminController@destroy');
  */
 Route::get('/admins/{id}/deletec','AdminController@destroyClient');
+Route::get('/admins/{id}/deletem','AdminController@destroyManager');
+Route::get('/admins/{id}/deleter','AdminController@destroyRece');
 
 
 

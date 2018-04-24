@@ -1,7 +1,7 @@
 @extends('layouts.dash')
 @section('content')
 
-<form method="post" action="/adminsm">
+<form method="post" action="/adminsm"  enctype="multipart/form-data">
 {{csrf_field()}}
 
 name :- <input type="text" name="name">
@@ -21,6 +21,9 @@ Manager Creator
 
 </select>
 <br>
+<label for="image">Upload image</label>
+<input name="avatar_image" type="file" id="image">
+
 
 <input type="submit" value="Submit" class="btn btn-primary">
 </form>

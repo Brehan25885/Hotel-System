@@ -11,7 +11,8 @@ class Manager extends Model
         'name',
         'email',
         'password',
-        'national_id'
+        'national_id',
+        'avatar_image'
         
         
     ];
