@@ -35,7 +35,9 @@ Route::get('admins/createm','AdminController@createManager');
 Route::post('adminsm','AdminController@storeManager');
 Route::get('admins/createc','AdminController@createClient');
 Route::post('adminsc','AdminController@storeClient');
-Route::delete('/admins/{admin}/deletec','AdminController@destroy');
+/* Route::delete('/admins/{admin}/deletec','AdminController@destroy');
+ */
+Route::get('/admins/{id}/deletec','AdminController@destroyClient');
 
 
 

@@ -12,6 +12,7 @@ class Client extends Model
         'mobile',
         'country',
         'gender',
+        'avatar_image',
         
     ];
     public function admin()

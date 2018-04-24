@@ -11,6 +11,7 @@
                 <th>mobile</th>
                 <th>country</th>
                 <th>gender</th>
+                <th>avatar_image</th>
                 <th></th>
             </tr>
         </thead>
@@ -48,6 +49,11 @@ $(function() {
           {data: 'country', name: 'country'},
          
           {data: 'gender', name: 'gender'},
+           {data: 'avatar_image', name: 'avatar_image',
+            "render": function(data, type, row) {
+        return '<img src="/storage/avatar_images/'+data+'" />';
+                 }   }, 
+          
           {data: 'action', name: 'action', orderable: false, searchable: false},
            
 

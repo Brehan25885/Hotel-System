@@ -6,6 +6,7 @@ use App\Receptionist;
 use App\Manager;
 use App\Client;
 use Yajra\Datatables\Datatables;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -51,10 +52,9 @@ $admin= Client::query();
         return '<form method="GET" action="/admins/'.$cd->id.'/editc" >
         <button  class="btn btn-primary" > Edit </button>
     </form>
-    <form method="post" action="/admins/'.$cd->id.'/deletec" >
-    {{method_field(\'DELETE\')}}
-    <button onclick="return confirm(\'are you sure\')" type="submit" class="btn btn-danger" > Delete </button>
-</form>'; })->make(true);
+    <td><a class="btn btn-danger" href = "/admins/'.$cd->id.'/deletec">Delete</a></td>
+    '
+    ; })->make(true);
 
 }
 
@@ -189,6 +189,27 @@ public function createRece()
        
      public function storeClient(Request $request)
         {
+            if($request->hasfile('avatar_image')){
+                //get file name with ext
+                 $fileNameWithExt=$request->file('avatar_image')->getClientOriginalName();
+                //get file name only and turn it into string
+                  $fileName=implode(" ",pathinfo($fileNameWithExt));
+                 
+                 
+                //get file ext only
+                  $extension=$request->file('avatar_image')->getClientOriginalExtension();
+                  
+                //new file name
+                  $fileNameToStore=$fileName."_".time().".".$extension;
+                 
+                  //upload image
+                  $path=$request->file('avatar_image')->storeAs('public/avatar_images',$fileNameToStore);
+             }else{
+                 $fileNameToStore=".ninja.jpeg jpeg ninja";
+                 
+             }
+
+
             
              
             Client::create([
@@ -197,12 +218,19 @@ public function createRece()
               'country' => $request->country,
               'mobile' => $request->mobile,
                 'gender' => $request->gender,
+                'avatar_image' => $fileNameToStore,
 
                'admin_id' => $request->admin_id,
             ]);
             
            return redirect(route('datatables')); 
         }
+        public function destroyClient($id) {
+          //  DB::delete('delete from clien where id = ?',[$id]);
+            DB::table('clients')->where('id', '=', $id)->delete();
+            return redirect(route('datatables')); 
+
+         }
 
 
       
