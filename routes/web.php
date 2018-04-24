@@ -54,3 +54,11 @@ Route::get('/indexrecep',function () {
 })->name('indexrecep');
  }); 
  Route::get('recep/{client}/approve','ReceptionistController@approve');
+
+
+
+ Route::get('temp','ManageRespController@index')->name('ResptionistController.index');
+ Route::get('temp/getdata','ManageRespController@getdata')->name('ResptionistController.getdata');
+
+
+

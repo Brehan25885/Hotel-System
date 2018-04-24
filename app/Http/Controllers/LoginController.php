@@ -21,6 +21,9 @@ $user= User::where('email',$request->email)->first();
 if($user->role=='receptionist'){    
 return redirect()->route('indexrecep');
 }
+elseif($user->role=='manager'){
+return redirect()->route('ResptionistController.index');
+}
 return redirect()->route('home');
 }
 return redirect()->back();
