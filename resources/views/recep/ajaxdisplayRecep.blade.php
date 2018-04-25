@@ -4,13 +4,11 @@
         <table class="table table-bordered" id="users-table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th> Mobile</th>
                 <th>Country</th>
                 <th>Gender</th>
-                <th>Is Approved</th>
                 <th> Edit</th>
             </tr>
           
@@ -33,13 +31,11 @@ $(function() {
         dom: 'Bfrtip',
         ajax: '{!! route('datatables.data') !!}',
         columns: [
-            { data: 'id', name: 'id' },
             { data: 'name', name: 'name' },
             { data: 'email', name: 'email' },
             { data: 'mobile', name: 'mobile' },
             { data: 'country', name: 'country' },
             { data: 'gender', name: 'gender' },
-            { data: 'is_approved', name: 'is_approved' },
             {data: 'action', name: 'action', orderable: false, searchable: false},
          
         ]

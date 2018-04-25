@@ -24,17 +24,14 @@ class ReceptionistController extends Controller
 
  function getdata(){
  
-/*              return Datatables::of(Client::query())->make(true);
- */           
-$clients=Client::query();
+/*              return Datatables::of(Client::query())->make(true);*/       
+$clients = Client::query() ->select([ 'id','name','email','mobile', 'country', 'gender'])
+->where('is_approved','=','0'); 
              return Datatables::of($clients)->addColumn('action', function ($client) {
                   return '<form method="GET" action="/recep/'.$client->id.'/approve" >
                   <button class="btn btn-primary" id="approve" > Approve </button>
               </form>';
-          /*   return  '<button class="edit-modal btn btn-info"id="approve" data-id="{{$client->id}}"
-  							data-name="{{$client->name}}">
-  							<span class="glyphicon glyphicon-edit"></span> Approve
-</button>';*/
+         
               })   ->make(true);  
               
  }
