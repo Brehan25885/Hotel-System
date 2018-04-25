@@ -11,9 +11,7 @@ class Receptionist extends Model
         'name',
         'email',
         'password',
-        'country',
-        'gender',
-        'admin_id',
+        'national_id',
         'avatar_image'
         
     ];

@@ -9,8 +9,7 @@
                 <!-- <th>id</th> -->
                 <th>name</th>
                 <th>email</th>
-                <th>country</th>
-                <th>gender</th>
+                <th>national_id</th>
                 <th>avatar_image</th>
                 <th></th>
             </tr>
@@ -33,8 +32,8 @@ $(function() {
              {data: 'name'
              , name: 'name'},
             {data: 'email', name: 'email'},
-            {data: 'country', name: 'country'},
-            {data: 'gender', name: 'gender'},
+            {data: 'national_id', name: 'national_id'},
+          
             {data: 'avatar_image', name: 'avatar_image',
             "render": function(data, type, row) {
         return '<img src="/storage/avatar_images/'+data+'" />';

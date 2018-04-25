@@ -8,6 +8,12 @@ use App\Client;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Http\Requests\storeManagerRequest;
+use App\Http\Requests\updateManagerRequest;
+
+use App\Http\Requests\updateReceRequest;
+
+use App\Http\Requests\storeReceRequest;
 
 class AdminController extends Controller
 {
@@ -76,11 +82,50 @@ return view('admins.editReceptionist',[
 
 }
 
-public function updateRece(Request $request,$id){
+public function updateRece(updateReceRequest $request,$id){
+
+  /*   if( $request->hasFile('avatar_image')) {
+        unlink(public_path() . '/'.$receptionists->avatar_image);
+        $image = $request->file('avatar_image');
+        $imagename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+        $filename = $imagename. '_'. time() . '.' . $image->getClientOriginalExtension();
+        $request->image->storeAs('public/image',$filename);
+        $receptionists->update(['avatar_image' => 'image/'.$filename]);
+    } */
     $Receptionists=Receptionist::find($id);
+
+    if($request->hasfile('avatar_image')){
+
+/*         unlink(public_path() . '/storage/avatar_images/'.$Receptionists->avatar_image);
+ */        //get file name with ext
+
+         $fileNameWithExt=$request->file('avatar_image')->getClientOriginalName();
+        
+         //get file name only and turn it into string
+          $fileName=implode(" ",pathinfo($fileNameWithExt));
+
+         
+        //get file ext only
+          $extension=$request->file('avatar_image')->getClientOriginalExtension();
+
+        //new file name
+          $fileNameToStore=$fileName."_".time().".".$extension;
+         
+          //upload image
+          $path=$request->file('avatar_image')->storeAs('public/avatar_images',$fileNameToStore);
+//dd($path);
+     }
+    
+
     $Receptionists->name=$request->name;
     $Receptionists->email=$request->email;
-    $Receptionists->country=$request->country;
+    $Receptionists->password=$request->password;
+    $Receptionists->national_id=$request->national_id;
+    if($request->hasfile('avatar_image')){  
+
+ $Receptionists->avatar_image= $fileNameToStore;
+    }
+   // 'avatar_image' => $fileNameToStore,
     $Receptionists->save();
 
 
@@ -98,7 +143,7 @@ return view('admins.editManager',[
 ]); 
 }
 
-public function updateManager(Request $request,$id){
+public function updateManager(updateManagerRequest $request,$id){
     $Managers=Manager::find($id);
     $Managers->name=$request->name;
     $Managers->email=$request->email;
@@ -140,7 +185,7 @@ public function createRece()
             
         }
        
-     public function storeRece(Request $request)
+     public function storeRece(storeReceRequest $request)
         {
 
             if($request->hasfile('avatar_image')){
@@ -168,8 +213,8 @@ public function createRece()
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => $request->password,
-                'country' => $request->country,
-                'gender' => $request->gender,
+                'national_id' => $request->national_id,
+               
                 'admin_id' => $request->admin_id,
                 'avatar_image' => $fileNameToStore,
             ]);
@@ -187,7 +232,7 @@ public function createRece()
             
         }
        
-     public function storeManager(Request $request)
+     public function storeManager(storeManagerRequest $request)
         {
              if($request->hasfile('avatar_image')){
                 //get file name with ext

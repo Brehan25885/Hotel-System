@@ -10,7 +10,7 @@
                 <th>email</th>
                 <th>national_id</th>
                 <th>avatar_image</th>
-                <th></th>
+        <!--  -->        <th></th>
                
             </tr>
         </thead>
