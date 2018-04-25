@@ -144,7 +144,43 @@ return view('admins.editManager',[
 }
 
 public function updateManager(updateManagerRequest $request,$id){
+
+
     $Managers=Manager::find($id);
+    if($request->hasfile('avatar_image')){
+
+/*         unlink(public_path() . '/storage/avatar_images/'.$Receptionists->avatar_image);
+ */        //get file name with ext
+
+         $fileNameWithExt=$request->file('avatar_image')->getClientOriginalName();
+        
+         //get file name only and turn it into string
+          $fileName=implode(" ",pathinfo($fileNameWithExt));
+
+         
+        //get file ext only
+          $extension=$request->file('avatar_image')->getClientOriginalExtension();
+
+        //new file name
+          $fileNameToStore=$fileName."_".time().".".$extension;
+         
+          //upload image
+          $path=$request->file('avatar_image')->storeAs('public/avatar_images',$fileNameToStore);
+//dd($path);
+     }
+
+
+     if($request->hasfile('avatar_image')){  
+
+        $Managers->avatar_image= $fileNameToStore;
+           }
+
+
+
+
+
+
+   
     $Managers->name=$request->name;
     $Managers->email=$request->email;
     $Managers->national_id=$request->national_id;
@@ -165,6 +201,48 @@ return view('admins.editClient',[
 
 public function updateClient(Request $request,$id){
     $clients=Client::find($id);
+
+
+    if($request->hasfile('avatar_image')){
+
+        /*         unlink(public_path() . '/storage/avatar_images/'.$Receptionists->avatar_image);
+         */        //get file name with ext
+        
+                 $fileNameWithExt=$request->file('avatar_image')->getClientOriginalName();
+                
+                 //get file name only and turn it into string
+                  $fileName=implode(" ",pathinfo($fileNameWithExt));
+        
+                 
+                //get file ext only
+                  $extension=$request->file('avatar_image')->getClientOriginalExtension();
+        
+                //new file name
+                  $fileNameToStore=$fileName."_".time().".".$extension;
+                 
+                  //upload image
+                  $path=$request->file('avatar_image')->storeAs('public/avatar_images',$fileNameToStore);
+        //dd($path);
+             }
+        
+        
+             if($request->hasfile('avatar_image')){  
+        
+                $clients->avatar_image= $fileNameToStore;
+                   }
+        
+
+
+
+
+
+
+
+
+
+
+
+
     $clients->name=$request->name;
    $clients->email=$request->email;
    $clients->mobile=$request->mobile;
