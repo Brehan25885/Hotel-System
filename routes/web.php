@@ -14,25 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/index', function () {
+/* Route::get('/index', function () {
     return view('index');
     
 });
-/* Route::get('/indexrecep', function () {
-    return view('recep.index');
-    
-});
  */
-Route::get('recep','ReceptionistController@index')->name('datatables');
-Route::get('recep/getdata','ReceptionistController@getdata')->name('datatables.data');
 
-/* Route::controller('datatables', 'DatatablesController', [
-    'getdata'  => 'datatables.data',
-    'index' => 'datatables',
-]); */
-
-Route::get('reservations','ReceptionistController@indexReserve')->name('reserve');
-Route::get('reservations/getdata','ReceptionistController@getReservations')->name('reserve.datareservations');
 
 
 Auth::routes();
@@ -43,14 +30,22 @@ Route::post('/login/custom',[
     'uses'=>"LoginController@login",
     'as'=>'login.custom'
 ]);
-Route::group(['middleware'=>'auth'],function(){
- Route::get('/home',function () {
+Route::get('/home',function () {
     return view('home');
     
 })->name('home');
+
+
+Route::group(['middleware' =>['role:receptionist']],function(){ 
 Route::get('/indexrecep',function () {
-    return view('recep.index');
-    
+    return view('recep.index');  
 })->name('indexrecep');
+Route::get('reservations','ReceptionistController@indexReserve')->name('reserve');
+Route::get('reservations/getdata','ReceptionistController@getReservations')->name('reserve.datareservations');
+Route::get('recep/{client}/approve','ReceptionistController@approve');
+Route::get('recep','ReceptionistController@index')->name('datatables');
+Route::get('recep/getdata','ReceptionistController@getdata')->name('datatables.data');
+
  }); 
- Route::get('recep/{client}/approve','ReceptionistController@approve');
+/*  Route::get('assign','ReceptionistController@assignRoles');
+ */

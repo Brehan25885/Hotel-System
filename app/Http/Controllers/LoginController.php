@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 use App\User;
 use Auth;
 class LoginController extends Controller
@@ -18,7 +20,7 @@ class LoginController extends Controller
 ])){
 $user= User::where('email',$request->email)->first();
 
-if($user->role=='receptionist'){    
+if($user->hasRole('receptionist')){    
 return redirect()->route('indexrecep');
 }
 return redirect()->route('home');

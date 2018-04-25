@@ -7,8 +7,15 @@ use App\Receptionist;
 use App\Client;
 use Yajra\Datatables\Datatables;
 use Auth;
+use App\User;
+use Illuminate\Support\Facades\Hash;
+
 class ReceptionistController extends Controller
 {
+    public function __construct()
+{
+    $this->middleware(['role:receptionist']);
+}
     public function index()
     {
         return view('recep.ajaxdisplayRecep');
@@ -63,10 +70,27 @@ function getReservations(){
         $client->save();}
         return redirect(route('datatables'));
 
-       /*  $posts = Post::all();
-        $post = $posts->first();
-        return view('posts.index',[
-            'posts' => $posts
-        ]); */
+    
 }
+
+/* public function assignRoles()
+{   */ 
+  /*  User::create([
+        'name' => 'brehan',
+            'email' => 'brehan@gmail.com',
+            'password' => Hash::make('123456'),
+    ])->assignRole('receptionist');
+ */
+  //  $user=User::find(8)->hasRole('admin');
+
+/*     return redirect(route('datatables'));
+ */
+   /*  $posts = Post::all();
+    $post = $posts->first();
+    return view('posts.index',[
+        'posts' => $posts
+    ]); */
+/* } */
+
+
 }
