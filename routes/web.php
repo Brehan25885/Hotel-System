@@ -39,7 +39,12 @@ Route::post('adminsc','AdminController@storeClient');
  */
 Route::get('/admins/{id}/deletec','AdminController@destroyClient');
 Route::get('/admins/{id}/deletem','AdminController@destroyManager');
-Route::get('/admins/{id}/deleter','AdminController@destroyRece');
+
+
+
+Route::get('ajaxdata/removedata', 'AdminController@removedata')->name('tables.datadestroy');
+
+ Route::get('/admins/{id}/deleter','AdminController@destroyRece');
 
 
 

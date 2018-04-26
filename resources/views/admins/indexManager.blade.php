@@ -21,26 +21,23 @@
         @push('scripts')
 
         <script>
-$(function() {
-    $('#users-table').DataTable({
+
+
+
+
+
+        
+        $(function() {
+        $('#users-table').DataTable({
         processing: true,
         serverSide: true,
-/*         ajax: 'https://datatables.yajrabox.com/eloquent/joins-data',
- */
+        dom:'Bfrtip',
       ajax: '{!! route('tables.data') !!}', 
         columns: [
-            /* { data: 'id', name: 'id' },
-            { data: 'name',name: 'name' },
-            { data: 'email', name: 'email' },
-            { data: 'created_at', name: 'created_at' },
-            { data: 'updated_at', name: 'updated_at' } */
-
-         /* {data: 'id', name: 'id'}, */
+          
             {data: 'name', name: 'name'},
-          /* {data: 'password', name: 'password'} */
           {data: 'email', name: 'email'},
           {data: 'national_id', name: 'national_id'},
-         
           {data: 'avatar_image', name: 'avatar_image',
             "render": function(data, type, row) {
         return '<img src="/storage/avatar_images/'+data+'" />';
@@ -51,6 +48,40 @@ $(function() {
 
         ]
     });
-});
+    $(document).on('click', '.delete', function(){
+        var id = $(this).attr('id');
+        if(confirm("Are you sure you want to Delete this data?"))
+        {
+            $.ajax({
+                url:"{{route('tables.datadestroy')}}",
+                mehtod:"get",
+                data:{id:id},
+                success:function(data)
+                {
+                    alert(data);
+                    $('#users-table').DataTable().ajax.reload();
+                }
+            })
+        }
+        else
+        {
+            return false;
+        }
+    });  
+ });
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
 </script>
 @endpush

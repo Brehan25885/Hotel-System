@@ -27,7 +27,7 @@ class AdminController extends Controller
             return '<form method="GET" action="/admins/'.$ud->id.'/editm" >
             <button  class="btn btn-primary" > Edit </button>
         </form>
-        <td><a class="btn btn-danger" href = "/admins/'.$ud->id.'/deletem">Delete</a></td>
+        <a href="#" class="btn btn-xs btn-danger delete" id="'.$ud->id.'"><i class="glyphicon glyphicon-remove"></i> Delete</a>
         ';
         })
          ->make(true);
@@ -412,7 +412,14 @@ public function createRece()
          }
   
 
-
+         function removedata(Request $request)
+         {
+             $manager = Manager::find($request->input('id'));
+             if($manager->delete())
+             {
+                 echo 'Data Deleted';
+             }
+         }
       
 
 }
