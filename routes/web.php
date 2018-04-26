@@ -57,8 +57,15 @@ Route::get('/indexrecep',function () {
 
 
 
- Route::get('temp','ManageRespController@index')->name('ResptionistController.index');
- Route::get('temp/getdata','ManageRespController@getdata')->name('ResptionistController.getdata');
+ Route::get('manageresp','ManageRespController@index')->name('ResptionistController.index');
+ Route::get('manageresp/getdata','ManageRespController@getdata')->name('ResptionistController.getdata');
+ Route::get('manageresp/{id}/edit','ManageRespController@edit')->name('ResptionistController.edit');
+ Route::get('createresp','ManageRespController@create')->name('ResptionistController.create');
+ Route::post('store','ManageRespController@store')->name('ResptionistController.store');
+ Route::post('manageresp/{id}/update','ManageRespController@update')->name('ResptionistController.update');
+ //Route::get('manageresp/{id}/delete','ManageRespController@destroy')->name('ResptionistController.delete');
+ Route::get('manageresp/delete','ManageRespController@removedata')->name('ResptionistController.delete');
+
 
 
 
