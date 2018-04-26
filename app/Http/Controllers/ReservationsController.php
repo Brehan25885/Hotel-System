@@ -41,10 +41,41 @@ class ReservationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         //
-        return ("hello");
+        // Set your secret key: remember to change this to your live secret key in production
+        // See your keys here: https://dashboard.stripe.com/account/apikeys
+        \Stripe\Stripe::setApiKey("sk_test_mXLOIO7kwjYPpg80ckqs8VSF");
+
+        // Token is created using Checkout or Elements!
+         // Get the payment token ID submitted by the form:
+        $token = $request->stripeToken;
+        
+        $charge = \Stripe\Charge::create([
+          'amount' => $request->roomPrice,
+          'currency' => 'usd',
+          'description' => 'Example charge',
+          'source' => $token,
+         ]);
+
+         //save to DB
+
+         $data=[
+            'client_id' => $request->clientId,
+            'room_id' => $request->roomId,
+            'price_paid' => $request->roomPrice,
+            
+        ];
+        $newRes=new Reservation($data);
+        $newRes->save();
+
+        //update room to reserved
+         $room=Room::find($request->roomId);
+        
+         $room->available=0;
+         $room->save();
+
+        return view('reservations.showRes');
     }
 
     /**

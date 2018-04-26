@@ -4,6 +4,7 @@
 <h1>Create Reservation</h1>
 
    <form action="/reservations" method="post" id="payment-form">
+   {{csrf_field()}}
    <div class="form-row" class="col-md-6">
     <label for="card-element">
       Credit or debit card
@@ -16,6 +17,11 @@
 
     <!-- Used to display Element errors. -->
     <div id="card-errors" role="alert"></div>
+  </div>
+  <div>
+  <input type="hidden" name="roomId" value="{{$room->id}}">
+  <input type="hidden" name="clientId" value="{{$client->id}}">
+  <input type="hidden" name="roomPrice" value="{{$room->price}}">
   </div>
   </br>
   </br>
@@ -66,6 +72,7 @@ form.addEventListener('submit', function(event) {
   });
 });
 function stripeTokenHandler(token) {
+  alert(token);
   // Insert the token ID into the form so it gets submitted to the server
   var form = document.getElementById('payment-form');
   var hiddenInput = document.createElement('input');
