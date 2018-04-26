@@ -10,8 +10,8 @@
               <h3 class="box-title">Available Rooms </h3>
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
-              <table id="av_rooms" class="table table-bordered">
+            <div class="box-body" id="someDiv">
+              <table  class="table table-bordered">
                 <tr>
                   <th style="width: 10px">#</th>
                   <th>Capacity</th>
@@ -20,27 +20,47 @@
                 </tr>
                 <tbody>
                 @foreach($rooms as $room)
+                {{$dollars=$room->price/100}}
                 <tr>
                    <td>{{$room->num}}</td>
                    <td>{{$room->capacity}}</td>
-                   <td>{{$room->price}}</td>
-                   <td><button class="edit-modal btn btn-info">
-            <span class="glyphicon glyphicon-edit"></span> Make Reservation
-        </button></td>
+                   <td>{{$dollars}}</td>
+                   <td><a href="/reservations/rooms/{{$room->id}}/{{$client->id}}" class="edit-modal btn btn-info">
+                   <span class="glyphicon glyphicon-edit"></span> Make Reservation
+                   </a></td>
                 </tr>
                 @endforeach
                 </tbody>
+                 
                 </table>
+               
           <!-- /.box -->
-          @stop
-          @push('scripts')
+          </div>
+   </div>
+
+         
 
        <script type="text/javascript">
-          $(document).ready(function(){
-            $('#av_rooms').DataTable();
-          });
-       </script> 
-        @endpush
-   </div>
-   </div>
+        $('document').ready(function(){
+            
 
+          //$("#btn").click(function(){
+             // alert("hi");
+          //});
+          
+    $('#someDiv table'). DataTables({      
+              'proccessing':true,
+               'serverSide':true,
+               'ajax':'{!!route('getrooms.index')!!}',
+               'columns':[
+                 {data:"num",name:'#'},
+                 {data:"capacity",name:'capacity'},
+                 {data:"price",name:'price'}
+               ]
+    }); 
+          
+          });
+          
+       </script> 
+        @endsection
+   

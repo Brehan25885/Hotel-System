@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Client;
+use App\Room;
+use App\Reservation;
+
 class ReservationsController extends Controller
 {
     /**
@@ -21,9 +25,14 @@ class ReservationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create( $roomId , $clientId)
     {
         //
+        
+        $room=Room::find($roomId);
+        $client=Client::find($clientId);
+        
+        return view ('reservations.createRes',['client'=>$client,'room'=>$room]);
     }
 
     /**
@@ -35,6 +44,7 @@ class ReservationsController extends Controller
     public function store(Request $request)
     {
         //
+        return ("hello");
     }
 
     /**

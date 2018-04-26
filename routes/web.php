@@ -22,3 +22,6 @@ Route::get('/index', function () {
 Route::resource('clients','ClientsController');
 Route::resource('rooms','RoomsController');
 Route::resource('getrooms','GetroomsController');
+
+Route::get('reservations/rooms/{room}/{client}','ReservationsController@create');
+Route::post('reservations','ReservationsController@store');

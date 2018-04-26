@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Datatables;
+use DataTables;
 use App\rooms;
 use App\clients;
 

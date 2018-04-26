@@ -6,7 +6,21 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
   <!-- Bootstrap 3.3.7 -->
-  
+  <!--for datatables-->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+   
+   <!-- jQuery UI 1.11.4 -->
+   <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+   <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+   <script src="{{ asset('js/adminlte.min.js') }}"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>       
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <!--end -->
+
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   <link  href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
@@ -16,15 +30,9 @@
   <link  href="{{ asset('css/_all-skins.min.css') }}" rel="stylesheet">
   <link  href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" rel="stylesheet">
   
-  <script src="//code.jquery.com/jquery-1.12.3.js"></script>
-  <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-  <script
-    src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
-  <link rel="stylesheet"
-    href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <link rel="stylesheet"
-    href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
-  
+ <!-- for stripe -->
+ <script src="https://js.stripe.com/v3/"></script>
+ 
  </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -116,12 +124,9 @@
   </footer> -->
   <!-- jQuery -->
 
-<script src="{{ asset('js/jquery.min.js') }}"></script>
-<!-- jQuery UI 1.11.4 -->
- <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+
 <!-- Bootstrap 3.3.7 -->
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/adminlte.min.js') }}"></script>
-@stack('scripts');
+
+
 </body>
 </html>

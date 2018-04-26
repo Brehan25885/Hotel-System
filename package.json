@@ -20,6 +20,8 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "admin-lte": "^2.4.3"
+        "admin-lte": "^2.4.3",
+        "datatables.net": "^1.10.16",
+        "datatables.net-dt": "^1.10.16"
     }
 }

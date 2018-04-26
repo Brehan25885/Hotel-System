@@ -54,7 +54,7 @@
               <!-- /.box-body -->
 
               <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Register</button>
+                <button type="submit" class="btn btn-primary">Reserve</button>
               </div>
             </form>
           </div>

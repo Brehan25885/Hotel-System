@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Client;
 use App\Room;
+use App\Reservation;
 use Yajra\Datatables\Datatables;
 class RoomsController extends Controller
 {
@@ -50,7 +51,9 @@ class RoomsController extends Controller
     {
 
         $client=Client::find($id);
-        $data=Room::all();
+        $data=Room::where('available','1')->get();
+    
+        
         return view('rooms.showAvailable',['client'=>$client ,'rooms'=>$data]);
     }
     
