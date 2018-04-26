@@ -42,7 +42,10 @@ Route::get('/admins/{id}/deletem','AdminController@destroyManager');
 
 
 
-Route::get('ajaxdata/removedata', 'AdminController@removedata')->name('tables.datadestroy');
+Route::get('ajaxdata/removedatam', 'AdminController@removedataManager')->name('tables.datadestroyManager');
+Route::get('ajaxdata/removedatac', 'AdminController@removedataClient')->name('tables.datadestroyClient');
+Route::get('ajaxdata/removedatar', 'AdminController@removedataRece')->name('tables.datadestroyRece');
+
 
  Route::get('/admins/{id}/deleter','AdminController@destroyRece');
 

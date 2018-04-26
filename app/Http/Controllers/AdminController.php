@@ -43,7 +43,7 @@ $admin= Receptionist::query();
         return '<form method="GET" action="/admins/'.$ad->id.'/edit" >
         <button  class="btn btn-primary" > Edit </button>
     </form>
-    <td><a class="btn btn-danger" href = "/admins/'.$ad->id.'/deleter">Delete</a></td>
+    <a href="#" class="btn btn-xs btn-danger delete" id="'.$ad->id.'"><i class="glyphicon glyphicon-remove"></i> Delete</a>    
     ';
     })
      ->make(true);
@@ -62,7 +62,7 @@ $admin= Client::query();
         return '<form method="GET" action="/admins/'.$cd->id.'/editc" >
         <button  class="btn btn-primary" > Edit </button>
     </form>
-    <td><a class="btn btn-danger" href = "/admins/'.$cd->id.'/deletec">Delete</a></td>
+    <a href="#" class="btn btn-xs btn-danger delete" id="'.$cd->id.'"><i class="glyphicon glyphicon-remove"></i> Delete</a>
     '
     ; })->make(true);
 
@@ -412,10 +412,27 @@ public function createRece()
          }
   
 
-         function removedata(Request $request)
+         function removedataManager(Request $request)
          {
              $manager = Manager::find($request->input('id'));
              if($manager->delete())
+             {
+                 echo 'Data Deleted';
+             }
+         }
+         function removedataClient(Request $request)
+         {
+             $client = Client::find($request->input('id'));
+             if($client->delete())
+             {
+                 echo 'Data Deleted';
+             }
+         }
+
+         function removedataRece(Request $request)
+         {
+             $rece = Receptionist::find($request->input('id'));
+             if($rece->delete())
              {
                  echo 'Data Deleted';
              }

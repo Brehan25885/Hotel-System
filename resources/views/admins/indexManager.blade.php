@@ -53,7 +53,7 @@
         if(confirm("Are you sure you want to Delete this data?"))
         {
             $.ajax({
-                url:"{{route('tables.datadestroy')}}",
+                url:"{{route('tables.datadestroyManager')}}",
                 mehtod:"get",
                 data:{id:id},
                 success:function(data)

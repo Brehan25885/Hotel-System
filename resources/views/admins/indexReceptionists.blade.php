@@ -46,6 +46,32 @@ $(function() {
 
         ]
     });
+
+
+$(document).on('click', '.delete', function(){
+        var id = $(this).attr('id');
+        if(confirm("Are you sure you want to Delete this data?"))
+        {
+            $.ajax({
+                url:"{{route('tables.datadestroyRece')}}",
+                mehtod:"get",
+                data:{id:id},
+                success:function(data)
+                {
+                    alert(data);
+                    $('#users-table').DataTable().ajax.reload();
+                }
+            })
+        }
+        else
+        {
+            return false;
+        }
+    });  
+
+
+
+
 });
 </script>
 @endpush
