@@ -20,11 +20,11 @@
                 </tr>
                 <tbody>
                 @foreach($rooms as $room)
-                {{$dollars=$room->price/100}}
+                
                 <tr>
                    <td>{{$room->num}}</td>
                    <td>{{$room->capacity}}</td>
-                   <td>{{$dollars}}</td>
+                   <td>{{$room->price/100}}</td>
                    <td><a href="/reservations/rooms/{{$room->id}}/{{$client->id}}" class="edit-modal btn btn-info">
                    <span class="glyphicon glyphicon-edit"></span> Make Reservation
                    </a></td>

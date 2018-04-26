@@ -75,7 +75,7 @@ class ReservationsController extends Controller
          $room->available=0;
          $room->save();
 
-        return view('reservations.showRes');
+        return redirect()->route('reservations.showRes',['id'=>$request->clientId]);
     }
 
     /**
@@ -87,6 +87,24 @@ class ReservationsController extends Controller
     public function show($id)
     {
         //
+        $client=Client::find($id);
+        $reservations=Reservation::where('client_id',$id)->get();
+        $data=array();
+         foreach($reservations as $res){
+            $room=Room::where('id',$res->room_id)->get();
+            $price=$res->price_paid/100;
+
+            //my array with wanted data
+            $newroom['capacity']=$room[0]->capacity;
+            $newroom['price']=$price;
+            $newroom['roomNum']=$room[0]->num;
+                
+
+             //push to array
+             $data[]=$newroom;
+         }
+        
+        return view('reservations.showRes',['client'=>$client ,'rooms'=>$data]);
     }
 
     /**

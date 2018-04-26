@@ -7,27 +7,16 @@
 
   <!-- Bootstrap 3.3.7 -->
   <!--for datatables-->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-   
-   <!-- jQuery UI 1.11.4 -->
-   <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
-   <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-   <script src="{{ asset('js/adminlte.min.js') }}"></script>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>       
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  
   <!--end -->
 
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
   <link  href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-
   <link  href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
-
   <link href="{{ asset('css/AdminLTE.min.css') }}"  rel="stylesheet">
   <link  href="{{ asset('css/_all-skins.min.css') }}" rel="stylesheet">
+
   <link  href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" rel="stylesheet">
   
  <!-- for stripe -->
@@ -89,7 +78,7 @@
         <!-- Optionally, you can add icons to the links -->
         <li ><a href="/clients/{{$client->id}}"><i class="fa fa-link"></i> <span>My Profile</span></a></li>
         <li><a href="/clients/{{$client->id}}/edit"><i class="fa fa-link"></i> <span>Edit Profile</span></a></li>
-        <li><a href="#"><i class="fa fa-link"></i> <span>My Reservations</span></a></li>
+        <li><a href="/reservations/{{$client->id}}"><i class="fa fa-link"></i> <span>My Reservations</span></a></li>
         <li><a href="/rooms/{{$client->id}}"><i class="fa fa-link"></i> <span>Make Reservation</span></a></li>
         
       </ul>
@@ -129,4 +118,19 @@
 
 
 </body>
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<!-- jQuery UI 1.11.4 -->
+ <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/adminlte.min.js') }}"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
+<!-- DataTables -->
+<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+        <!-- Bootstrap JavaScript -->
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!-- App scripts -->
 </html>

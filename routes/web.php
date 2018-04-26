@@ -25,3 +25,4 @@ Route::resource('getrooms','GetroomsController');
 
 Route::get('reservations/rooms/{room}/{client}','ReservationsController@create');
 Route::post('reservations','ReservationsController@store');
+Route::get('reservations/{client}','ReservationsController@show');
