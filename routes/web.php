@@ -30,6 +30,10 @@ Route::post('/login/custom',[
     'uses'=>"LoginController@login",
     'as'=>'login.custom'
 ]);
+
+
+
+
 Route::get('/home',function () {
     return view('home');
     
@@ -47,5 +51,9 @@ Route::get('recep','ReceptionistController@index')->name('datatables');
 Route::get('recep/getdata','ReceptionistController@getdata')->name('datatables.data');
 
  }); 
-/*  Route::get('assign','ReceptionistController@assignRoles');
+
+
+ 
+   
+/*   Route::get('assign','ReceptionistController@assignRoles');
  */

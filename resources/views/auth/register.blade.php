@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
@@ -38,6 +38,47 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="mobile" class="col-md-4 col-form-label text-md-right">mobile</label>
+
+                            <div class="col-md-6">
+                                <input id="mobile" type="number" class="form-control" name="mobile" value="mobile" required>
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="country" class="col-md-4 col-form-label text-md-right">Country</label>
+                            <div class="col-md-6">
+                            <select class="form-control" name="country">
+                                @foreach ($countries as $country)
+                             <option value="{{ $country['name']}}">{{ $country['name']}}</option>
+                                @endforeach
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="gender" class="col-md-4 col-form-label text-md-right">gender</label>
+                            <div class="col-md-6">
+                            <select class="form-control" name="gender">
+                             <option value="female">female</option>
+                             <option value="male">male</option>
+
+                                </select>
+
+                            </div>
+                        </div>
+
+
+                     <div class="form-group row">
+                            <label for="image" class="col-md-4 col-form-label text-md-right">Upload Image</label>
+                            <div class="col-md-6">
+                            <input name="avatar_image" type="file" id="image">
+
+                            </div>
+                        </div>
+                        
+
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>

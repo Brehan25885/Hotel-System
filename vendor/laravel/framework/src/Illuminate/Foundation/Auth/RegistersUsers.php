@@ -16,8 +16,11 @@ trait RegistersUsers
      * @return \Illuminate\Http\Response
      */
     public function showRegistrationForm()
-    {
-        return view('auth.register');
+    {$countries = countries();
+        return view('auth.register',[
+          
+            'countries' =>$countries
+        ]);
     }
 
     /**
@@ -29,8 +32,27 @@ trait RegistersUsers
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
-
-        event(new Registered($user = $this->create($request->all())));
+        if($request->hasfile('avatar_image')){
+            //get file name with ext
+             $fileNameWithExt=$request->file('avatar_image')->getClientOriginalName();
+            //get file name only and turn it into string
+              $fileName=implode(" ",pathinfo($fileNameWithExt));
+             
+             
+            //get file ext only
+              $extension=$request->file('avatar_image')->getClientOriginalExtension();
+              
+            //new file name
+              $fileNameToStore=$fileName."_".time().".".$extension;
+             
+              //upload image
+              $path=$request->file('avatar_image')->storeAs('public/avatar_images',$fileNameToStore);
+         }else{
+             $fileNameToStore="avatar.jpg";
+             
+         }
+         //dd($request->all());
+        event(new Registered($user = $this->create($request->all(), $fileNameToStore)));
 
         $this->guard()->login($user);
 

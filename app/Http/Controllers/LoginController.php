@@ -23,6 +23,10 @@ $user= User::where('email',$request->email)->first();
 if($user->hasRole('receptionist')){    
 return redirect()->route('indexrecep');
 }
+else if ($user->hasRole('client')){    
+    return redirect()->route('indexclient');
+    }
+    
 return redirect()->route('home');
 }
 return redirect()->back();

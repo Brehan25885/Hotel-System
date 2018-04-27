@@ -18,7 +18,7 @@ class ReceptionistController extends Controller
 }
     public function index()
     {
-        return view('recep.ajaxdisplayRecep');
+        return view('recep.index');
       
   }
 
@@ -70,24 +70,20 @@ function getReservations(){
     
 }
 
-/* public function assignRoles()
-{   */ 
-  /*  User::create([
+ public function assignRoles()
+{   
+   User::create([
         'name' => 'brehan',
-            'email' => 'brehan@gmail.com',
+            'email' => 'brehan.ibrahim@gmail.com',
             'password' => Hash::make('123456'),
-    ])->assignRole('receptionist');
- */
+    ])->assignRole('client');
+
   //  $user=User::find(8)->hasRole('admin');
 
-/*     return redirect(route('datatables'));
- */
-   /*  $posts = Post::all();
-    $post = $posts->first();
-    return view('posts.index',[
-        'posts' => $posts
-    ]); */
-/* } */
+    return redirect(route('datatables'));
+
+   
+} 
 
 
 }
