@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests\storeManagerRequest;
 use App\Http\Requests\updateManagerRequest;
 
+use App\Http\Requests\updateClientRequest;
+
+use App\Http\Requests\storeClientRequest;
+
 use App\Http\Requests\updateReceRequest;
 
 use App\Http\Requests\storeReceRequest;
@@ -199,7 +203,7 @@ return view('admins.editClient',[
 ]); 
 }
 
-public function updateClient(Request $request,$id){
+public function updateClient(updateClientRequest $request,$id){
     $clients=Client::find($id);
 
 
@@ -357,7 +361,7 @@ public function createRece()
             
         }
        
-     public function storeClient(Request $request)
+     public function storeClient(storeClientRequest $request)
         {
             if($request->hasfile('avatar_image')){
                 //get file name with ext

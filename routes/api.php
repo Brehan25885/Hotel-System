@@ -16,8 +16,19 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('managers','Api\adminController@storeManager');
-
-Route::middleware('jwt.auth')->get('managers', function(Request $request) {
+/* Route::get('managers','Api\adminController@index');
+ */
+/* Route::middleware('jwt.auth')->get('managers', function(Request $request) {
     return auth()->manager();
+}); */
+
+
+Route::group([
+
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function ($router) {
+
+    Route::get('managers','Api\adminController@index');
 });
