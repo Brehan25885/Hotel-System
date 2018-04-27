@@ -18,9 +18,11 @@ class CreateReceptionistsTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('country');
-            $table->string('gender');
-            $table->timestamp('created_at')->nullable();
+            $table->string('national_id');
+            $table->string('avatar_image');
+            $table->integer('admin_id');
+            $table->integer('manager_id');
+            $table->timestamps();
         });
     }
 

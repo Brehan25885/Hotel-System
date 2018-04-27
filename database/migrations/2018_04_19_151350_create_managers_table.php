@@ -17,9 +17,12 @@ class CreateManagersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('national_id');
-            $table->timestamp('created_at')->nullable();
+            $table->string('avatar_image');
+            $table->integer('admin_id');
+            $table->timestamps();
+
         });
     }
 

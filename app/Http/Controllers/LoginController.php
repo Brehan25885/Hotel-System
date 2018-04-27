@@ -26,6 +26,9 @@ return redirect()->route('indexrecep');
 else if ($user->hasRole('client')){    
     return redirect()->route('indexclient');
     }
+    else if ($user->hasRole('admin')){    
+        return redirect()->route('tables');
+        }
     
 return redirect()->route('home');
 }

@@ -20,6 +20,10 @@ class AddRoomsTable extends Migration
             $table->integer('capacity');
             $table->integer('price');
             $table->integer('is_reserved');
+            $table->integer('manager_id');
+            $table->integer('floor_id');
+            $table->timestamps();
+
 
 
                 });
