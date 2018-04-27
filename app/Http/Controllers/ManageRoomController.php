@@ -23,14 +23,14 @@ class ManageRoomController extends Controller
     public function getdata(){
          $rooms=Room::with('floor')->get();
        return Datatables::of($rooms) ->addColumn('action', function ($ud) {
-          ///userid=Auth::user()->id;
-           // if( $userid == $ud->manager_id){
-            return '<form method="GET" action="/managerfloor/'.$ud->id.'/edit" >
+          $userid=Auth::user()->id;
+           if( $userid == $ud->manager_id){
+            return '<form method="GET" action="/managerRoom/'.$ud->id.'/edit" >
             <button  class="btn btn-primary" > Edit </button>
         </form>
         <td><a href="#" class="btn btn-danger delete"  id="'. $ud->id .'" ><i class="glyphicon glyphicon-remove"></i>Delete</a></td>
         ';
-            //}
+            }
         })
          ->make(true);
     }
@@ -87,7 +87,12 @@ class ManageRoomController extends Controller
      */
     public function edit($id)
     {
-        //
+        $floors=Floor::all();
+        $room=Room::find($id);
+        return view('manager.editRoom',[
+            'floors'=>$floors,
+            'room'=>$room
+        ]);
     }
 
     /**
@@ -97,9 +102,18 @@ class ManageRoomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreRoomRequest $request, $id)
     {
-        //
+        $userid=Auth::user()->id;
+        Room::where('id',$id)->update([
+            'number'=>$request->number,
+            'manager_id'=>$userid,
+            'price'=>$request->price,
+            'capacity'=>$request->capacity,
+            'floor_id'=>$request->floor_id
+            
+        ]);
+        return redirect(route('RoomController.index'));
     }
 
     /**
@@ -108,8 +122,9 @@ class ManageRoomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    function removedata(Request $request)
+    { 
+        $room = Room::find($request->input('id'));
+        $room->delete();
     }
 }

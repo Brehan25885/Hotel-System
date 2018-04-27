@@ -76,4 +76,7 @@ Route::get('/indexrecep',function () {
  Route::get('managerroom/getdata','ManageRoomController@getdata')->name('RoomController.getdata');
  Route::get('createroom','ManageRoomController@create')->name('RoomController.create');
  Route::post('storeroom','ManageRoomController@store')->name('RoomController.store');
+ Route::get('managerRoom/{id}/edit','ManageRoomController@edit')->name('RoomController.edit');
+ Route::post('managerRoom/{id}/update','ManageRoomController@update')->name('RoomController.update');
+ Route::get('managerRoom/delete','ManageRoomController@removedata')->name('RoomController.delete');
 

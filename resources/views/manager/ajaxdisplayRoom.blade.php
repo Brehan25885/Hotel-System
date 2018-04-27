@@ -8,7 +8,7 @@
             <div class="pull-right">
                     <a class="btn btn-success" href="{{ route('RoomController.create') }}">Create new room</a>
                 </div>
-              <h3 class="box-title">Manage Floors</h3>
+              <h3 class="box-title">Manage Rooms</h3>
             </div>
             
             <!-- /.box-header -->
@@ -57,7 +57,7 @@ $(function() {
         if(confirm("Are you sure you want to Delete this data?"))
         {
             $.ajax({
-                url:"{{route('FloorController.delete')}}",
+                url:"{{route('RoomController.delete')}}",
                 mehtod:"get",
                 data:{id:id},
                 success:function(data)
