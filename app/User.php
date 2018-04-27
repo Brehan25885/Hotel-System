@@ -34,4 +34,12 @@ public function receptionist()
 {
     return $this->hasMany('App\Receptionist');
 }
+public function floor()
+{
+    return $this->hasMany('App\Floor');
+}
+public function room()
+{
+   return $this->hasMany('App\Room');
+}
 }
