@@ -86,6 +86,32 @@ Route::get('recep/getdata','ReceptionistController@getdata')->name('datatables.d
      });
 
 
+ Route::group(['middleware' =>['auth'],['role:manager']],function(){ 
+
+     Route::get('manageresp','ManageRespController@index')->name('ResptionistController.index');
+     Route::get('manageresp/getdata','ManageRespController@getdata')->name('ResptionistController.getdata');
+     Route::get('manageresp/{id}/edit','ManageRespController@edit')->name('ResptionistController.edit');
+     Route::get('createresp','ManageRespController@create')->name('ResptionistController.create');
+     Route::post('storeresp','ManageRespController@store')->name('ResptionistController.sto');
+     Route::put('manageresp/{id}/update','ManageRespController@update')->name('ResptionistController.update');
+     //Route::get('manageresp/{id}/delete','ManageRespController@destroy')->name('ResptionistController.delete');
+     Route::get('manageresp/delete','ManageRespController@removedata')->name('ResptionistController.delete');
+     Route::get('managerfloor','ManageFloorController@index')->name('FloorController.index');
+     Route::get('managerfloor/getdata','ManageFloorController@getdata')->name('FloorController.getdata');
+     Route::get('createfloor','ManageFloorController@create')->name('FloorController.create');
+     Route::post('storefloor','ManageFloorController@store')->name('FloorController.store');
+     Route::get('managerfloor/{id}/edit','ManageFloorController@edit')->name('FloorController.edit');
+     Route::post('managerfloor/{id}/update','ManageFloorController@update')->name('FloorController.update');
+     Route::get('managerfloor/delete','ManageFloorController@removedata')->name('FloorController.delete');
+     Route::get('managerroom','ManageRoomController@index')->name('RoomController.index');
+     Route::get('managerroom/getdata','ManageRoomController@getdata')->name('RoomController.getdata');
+     Route::get('createroom','ManageRoomController@create')->name('RoomController.create');
+     Route::post('storeroom','ManageRoomController@store')->name('RoomController.store');
+     Route::get('managerRoom/{id}/edit','ManageRoomController@edit')->name('RoomController.edit');
+     Route::post('managerRoom/{id}/update','ManageRoomController@update')->name('RoomController.update');
+     Route::get('managerRoom/delete','ManageRoomController@removedata')->name('RoomController.delete');
+    
+ });
  
    
 /*   Route::get('assign','ReceptionistController@assignRoles');
