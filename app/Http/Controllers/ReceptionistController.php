@@ -12,10 +12,10 @@ use Illuminate\Support\Facades\Hash;
 
 class ReceptionistController extends Controller
 {
-    public function __construct()
+    /* public function __construct()
 {
     $this->middleware(['role:receptionist']);
-}
+} */
     public function index()
     {
         return view('recep.index');
