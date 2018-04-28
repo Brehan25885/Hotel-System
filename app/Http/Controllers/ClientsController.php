@@ -173,7 +173,7 @@ class ClientsController extends Controller
          $data=[
             
             'room_number' => $room->number,
-            'price_paid' => $request->roomPrice,
+            'paid_price' => $request->roomPrice,
             
         ];
         
@@ -187,5 +187,13 @@ class ClientsController extends Controller
          dd('reserved successfully');
         return redirect()->route('reservations.showRes',['id'=>$request->clientId]);
 
+    }
+
+    public function showRes($id){
+        $client=Client::find($id);
+        $room=Room::where('number',$client->room_number)->get();
+        $capacity=$room[0]->capacity;
+        
+        return view('reservations.showRes',['client'=>$client , 'roomCapacity'=>$capacity]);
     }
 }

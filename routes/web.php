@@ -30,6 +30,7 @@ Auth::routes();
  Route::resource('getrooms','GetroomsController');
  Route::get('reservations/rooms/{room}/{client}','ClientsController@createRes');
  Route::post('reservations','ClientsController@storeRes');
+ Route::get('reservations/{client}','ClientsController@showRes');
  //
  Route::get('/home', 'HomeController@index')->name('home');
 
