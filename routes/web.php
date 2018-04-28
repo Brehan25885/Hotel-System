@@ -47,8 +47,8 @@ Route::get('/indexrecep',function () {
 Route::get('reservations','ReceptionistController@indexReserve')->name('reserve');
 Route::get('reservations/getdata','ReceptionistController@getReservations')->name('reserve.datareservations');
 Route::get('recep/{client}/approve','ReceptionistController@approve');
-Route::get('recep','ReceptionistController@index')->name('datatables');
-Route::get('recep/getdata','ReceptionistController@getdata')->name('datatables.data');
+Route::get('recep','ReceptionistController@index')->name('receptables');
+Route::get('recep/getdata','ReceptionistController@getdata')->name('receptables.data');
 
  });
  

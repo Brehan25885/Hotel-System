@@ -8,13 +8,27 @@ name :- <input type="text" name="name">
 <br><br>
 email :- <input type="text" name="email">
 <br><br>
-
+password :- <input type="password" name="password">
+<br><br>
 mobile :- <input type="text" name="mobile">
 <br><br>
-country :- <input type="text" name="country">
+Country :- <select class="form-control" name="country">
+                                @foreach ($countries as $country)
+                             <option value="{{ $country['name']}}">{{ $country['name']}}</option>
+                                @endforeach
+                                </select>
 <br><br>
-gender :- <input type="text" name="gender">
-<br><br>
+Room Number:-<select class="form-control" name="room">
+                                @foreach ($rooms as $room)
+                             <option value="{{ $room->number}}">{{ $room->number}}</option>
+                                @endforeach
+                                </select>
+<br>
+gender: <select class="form-control" name="gender">
+                             <option value="male">male</option>
+                             <option value="female">female</option>
+                                </select>
+<br>
 
 client Creator
 <select class="form-control" name="admin_id">

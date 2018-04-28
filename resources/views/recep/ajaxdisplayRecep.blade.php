@@ -29,7 +29,7 @@ $(function() {
         processing: true,
         serverSide: true,
         dom: 'Bfrtip',
-        ajax: '{!! route('datatables.data') !!}',
+        ajax: '{!! route('receptables.data') !!}',
         columns: [
             { data: 'name', name: 'name' },
             { data: 'email', name: 'email' },

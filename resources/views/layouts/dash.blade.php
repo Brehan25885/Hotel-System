@@ -43,8 +43,8 @@
       <ul class="nav navbar-nav">
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="/img/user2-160x160.jpg" class="user-image" alt="User Image">
-            <span class="hidden-xs">Alexander Pierce</span>
+          <img src="/img/avatar_image2.png" class="img-circle" alt="User Image">
+            <span class="hidden-xs"></span>
           </a>
           <ul class="dropdown-menu">
             <!-- User image -->
@@ -97,11 +97,10 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+        <img src="/img/avatar_image.png" class="img-circle" alt="User Image">
       </div>
       <div class="pull-left info">
-        <p>Alexander Pierce</p>
-        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        <p></p>
       </div>
     </div>
     <!-- search form -->
@@ -120,7 +119,7 @@
       <li class="header">MAIN NAVIGATION</li>
       <li class="active treeview">
         <a href="#">
-          <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+          <i class="fa fa-dashboard"></i> <span>Admin Dashboard</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
@@ -132,34 +131,6 @@
           <li><a href="/indexRece"><i class="fa fa-circle-o"></i> Manage Receptionists</a></li>
         </ul>
       </li>
-      <li class="treeview">
-        <a href="#">
-          <i class="fa fa-files-o"></i>
-          <span>Layout Options</span>
-          <span class="pull-right-container">
-            <span class="label label-primary pull-right">4</span>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-          <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-          <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-          <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="pages/widgets.html">
-          <i class="fa fa-th"></i> <span>Widgets</span>
-          <span class="pull-right-container">
-            <small class="label pull-right bg-green">new</small>
-          </span>
-        </a>
-      </li>
-
-
-
-
-
 
     </ul>
   </section>
@@ -175,7 +146,11 @@
       <small>Control panel</small>
     </h1>
     <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="/home"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><a href="/indexManager"><i class="fa fa-dashboard"></i> admin</a></li>
+      <li><a href="/recep"><i class="fa fa-dashboard"></i> Receptionist</a></li>
+      <li><a href="#"><i class="fa fa-dashboard"></i> client</a></li>
+      <li><a href="/indexManager"><i class="fa fa-dashboard"></i> manager</a></li>
       <li class="active">Dashboard</li>
     </ol>
   </section>

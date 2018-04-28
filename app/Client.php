@@ -15,4 +15,5 @@ class Client extends Model
     {
         return $this->belongsTo(Admin::class);
     }
+ 
 }

@@ -6,6 +6,7 @@ use App\Receptionist;
 use App\Manager;
 use App\Client;
 use App\User;
+use App\Room;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -312,7 +313,7 @@ public function createRece()
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 
-            ]);
+            ])->assignRole('receptionist');
             
            return redirect(route('datatable')); 
         }
@@ -366,7 +367,7 @@ public function createRece()
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
 
-            ]);
+            ])->assignRole('manager');
             
            return redirect(route('tables')); 
         }
@@ -374,9 +375,15 @@ public function createRece()
 
         public function createClient()
         {
+            $countries = countries();
         $admins = Admin::all();
+        $rooms=Room::all();
             return view('admins.createClient',[
-                'admins' => $admins
+                'admins' => $admins,
+                'countries'=>$countries,
+                'rooms'=> $rooms
+
+
             ]); 
             
         }
@@ -411,6 +418,9 @@ public function createRece()
                 'email' => $request->email,
               'country' => $request->country,
               'mobile' => $request->mobile,
+              'password' => Hash::make($request->password),
+              'room_number' => $request->room,
+
                 'gender' => $request->gender,
                 'admin_id' => $request->admin_id,
                 'avatar_image' => $fileNameToStore,
@@ -419,8 +429,10 @@ public function createRece()
             User::create([
                 'name' => $request->name,
                 'email' => $request->email,
+                'password' => Hash::make($request->password),
+
               
-            ]);
+            ])->assignRole('client');
             
            return redirect(route('datatables')); 
         }
