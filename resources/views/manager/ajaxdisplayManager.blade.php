@@ -19,6 +19,7 @@
                   <th>name</th>
                   <th>email</th>
                   <th>created_at</th>
+                  <th>profileImage</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -46,6 +47,10 @@ $(function() {
             { data: 'name', name: 'name' },
             { data: 'email', name: 'email' },
             { data: 'created_at', name: 'created_at' },
+            {data: 'avatar_image', name: 'avatar_image',
+            "render": function(data, type, row) {
+        return '<img src="/storage/avatar_images/'+data+'" />';
+                 }   }, 
             {data: 'action', name: 'action', orderable: false, searchable: false},
           
         ]

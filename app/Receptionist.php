@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Receptionist extends Model
 {  
     protected $fillable = [
-        'name', 'email', 'password','manager_id','national_id'
+        'name', 'email', 'password','manager_id','national_id','avatar_image'
     ];
     //
     public function manager()

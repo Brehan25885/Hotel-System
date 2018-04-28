@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Receptionist;
 use Yajra\Datatables\Datatables;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreRespRequest;
+use League\Flysystem\Filesystem;
 use Auth;
 
 class ManageRespController extends Controller
@@ -52,15 +54,37 @@ class ManageRespController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRespRequest $request)
     {
-       $userid=Auth::user()->id;
+        if($request->hasfile('avatar_image')){
+            //get file name with ext
+             $fileNameWithExt=$request->file('avatar_image')->getClientOriginalName();
+            //get file name only and turn it into string
+              $fileName=implode(" ",pathinfo($fileNameWithExt));
+             
+             
+            //get file ext only
+              $extension=$request->file('avatar_image')->getClientOriginalExtension();
+              
+            //new file name
+            $fileNameToStore=$fileName."_".time().".".$extension;
+             
+              //upload image
+              $path=$request->file('avatar_image')->storeAs('public/avatar_images',$fileNameToStore);
+         }else{
+             $fileNameToStore="avatar.jpg";
+             
+         }
+
+
+        $userid=Auth::user()->id;
         Receptionist::create([
             'name'=>$request->name,
             'email'=>$request->email,
             'national_id'=>$request->national_id,
             'password'=>$request->password,
             'manager_id'=>$userid,
+            'avatar_image'=>$fileNameToStore,
           ]);
           //return view('manager.ajaxdisplayManager');
 
@@ -108,9 +132,58 @@ class ManageRespController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreRespRequest $request, $id)
     {
         $userid=Auth::user()->id;
+        $Receptionists=Receptionist::find($id);
+    if($request->hasfile('avatar_image')){
+/*         unlink(public_path() . '/storage/avatar_images/'.$Receptionists->avatar_image);
+ */        //get file name with ext
+         $fileNameWithExt=$request->file('avatar_image')->getClientOriginalName();
+        
+         //get file name only and turn it into string
+          $fileName=implode(" ",pathinfo($fileNameWithExt));
+         
+        //get file ext only
+          $extension=$request->file('avatar_image')->getClientOriginalExtension();
+        //new file name
+          $fileNameToStore=$fileName."_".time().".".$extension;
+         
+          //upload image
+          $path=$request->file('avatar_image')->storeAs('public/avatar_images',$fileNameToStore);
+//dd($path);
+     }
+    
+    $Receptionists->name=$request->name;
+    $Receptionists->email=$request->email;
+    $Receptionists->password=$request->password;
+    $Receptionists->national_id=$request->national_id;
+    $Receptionists->manager_id=$userid;
+    if($request->hasfile('avatar_image')){  
+ $Receptionists->avatar_image= $fileNameToStore;
+    }
+   // 'avatar_image' => $fileNameToStore,
+    $Receptionists->save();
+    return redirect(route('ResptionistController.index'));
+
+        /*if($request->hasfile('avatar_image')){
+            /*         unlink(public_path() . '/storage/avatar_images/'.$Receptionists->avatar_image);
+             */        //get file name with ext
+                   /*  $fileNameWithExt=$request->file('avatar_image')->getClientOriginalName();
+                    
+                     //get file name only and turn it into string
+                      $fileName=implode(" ",pathinfo($fileNameWithExt));
+                     
+                    //get file ext only
+                      $extension=$request->file('avatar_image')->getClientOriginalExtension();
+                    //new file name
+                      $fileNameToStore=$fileName."_".time().".".$extension;
+                     
+                      //upload image
+                      $path=$request->file('avatar_image')->storeAs('public/avatar_images',$fileNameToStore);
+            //dd($path);
+                 }
+
         Receptionist::where('id',$id)->update([
             'name'=>$request->name,
             'email'=>$request->email,
@@ -120,7 +193,8 @@ class ManageRespController extends Controller
             
         ]);
         return redirect(route('ResptionistController.index'));
-    }
+    }*/
+}
 
     /**
      * Remove the specified resource from storage.

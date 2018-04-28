@@ -62,7 +62,7 @@ Route::get('/indexrecep',function () {
  Route::get('manageresp/{id}/edit','ManageRespController@edit')->name('ResptionistController.edit');
  Route::get('createresp','ManageRespController@create')->name('ResptionistController.create');
  Route::post('storeresp','ManageRespController@store')->name('ResptionistController.sto');
- Route::post('manageresp/{id}/update','ManageRespController@update')->name('ResptionistController.update');
+ Route::put('manageresp/{id}/update','ManageRespController@update')->name('ResptionistController.update');
  //Route::get('manageresp/{id}/delete','ManageRespController@destroy')->name('ResptionistController.delete');
  Route::get('manageresp/delete','ManageRespController@removedata')->name('ResptionistController.delete');
  Route::get('managerfloor','ManageFloorController@index')->name('FloorController.index');

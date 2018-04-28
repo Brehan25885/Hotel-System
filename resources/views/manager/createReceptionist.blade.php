@@ -1,5 +1,14 @@
 @extends('layouts.dashManager')
 @section('content')
+@if($errors->any())
+<div class="alert alert-danger">
+<ul>
+@foreach($errors->all() as $error)
+<li>{{$error}}</li>
+</ul>
+@endforeach
+</div>
+@endif
 <section class="content">
       <div class="row">
         <!-- left column -->
@@ -11,7 +20,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" method="post" action="{{route('ResptionistController.sto')}}">
+            <form role="form" method="post" action="{{route('ResptionistController.sto')}}" enctype="multipart/form-data">
             {{csrf_field()}}
               <div class="box-body">
               <div class="form-group">
@@ -20,15 +29,19 @@
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" class="form-control" name="email"  placeholder="Enter email">
+                  <input type="email" class="form-control" name="email"  placeholder="Enter email"  value="{{old('email')}}">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputnationalid">national_id</label>
-                  <input type="text" class="form-control" name="national_id"  placeholder="Enter nationalId">
+                  <input type="text" class="form-control" name="national_id"  placeholder="Enter nationalId"  value="{{old('national_id')}}">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputImage">Image</label>
+                  <input type="file" class="form-control" name="avatar_image" id="image" value="{{old('avatar_image')}}">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control" name="password" placeholder="Password">
+                  <input type="password" class="form-control" name="password" placeholder="Password" value="{{old('password')}}">
                 </div>
                 <div class="checkbox">
                   <label>
