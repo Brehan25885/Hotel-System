@@ -7,18 +7,19 @@ use App\Receptionist;
 use App\Client;
 use Yajra\Datatables\Datatables;
 use Auth;
+use App\Room;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 
 class ReceptionistController extends Controller
 {
-    public function __construct()
+    /* public function __construct()
 {
     $this->middleware(['role:receptionist']);
-}
+} */
     public function index()
     {
-        return view('recep.index');
+        return view('recep.ajaxdisplayRecep');
       
   }
 
@@ -56,16 +57,14 @@ function getReservations(){
         $client=Client::find($clientid);
         $id = Auth::user()->id;
         $client->recep_id=$id;
-        if ($client->is_approved==1){
-            $client->is_approved=0;
-            $client->recep_id=NULL;
-            $client->save();
-        }
-        else{
             $client->recep_id=$id;
             $client->is_approved=1;
-        $client->save();}
-        return redirect(route('datatables'));
+            $room_num=$client->room_number;
+            $Room=Room::where('number','=',$room_num)->first();
+            $Room->is_reserved=1;
+            $Room->save();
+             $client->save();
+        return redirect(route('receptables'));
 
     
 }
@@ -80,7 +79,7 @@ function getReservations(){
 
   //  $user=User::find(8)->hasRole('admin');
 
-    return redirect(route('datatables'));
+    return redirect(route('receptables'));
 
    
 } 

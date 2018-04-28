@@ -15,7 +15,6 @@ class Client extends Model
     {
         return $this->belongsTo(Admin::class);
     }
-    
     protected $attributes = [
         'national_id' => '0',
         'client_accompany_no'=>'0',
@@ -25,5 +24,4 @@ class Client extends Model
         'recep_id' =>'0',
         'admin_id'=>'0'
     ];
-
 }

@@ -6,12 +6,13 @@ use App\Receptionist;
 use App\Manager;
 use App\Client;
 use App\User;
+use App\Room;
+use Auth;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\storeManagerRequest;
 use App\Http\Requests\updateManagerRequest;
-
 use App\Http\Requests\updateClientRequest;
 
 use App\Http\Requests\storeClientRequest;
@@ -28,6 +29,30 @@ class AdminController extends Controller
     {
       return view('admins.indexManager');
     }
+    public function AdminProfile()
+    {
+         $user=Auth::user()->id;
+        //dd($user);
+     // return view('admins.adminProfile'); 
+      $users=User::find($user);
+     //dd($users);
+     return view('admins.adminProfile' , compact('users'));
+
+
+
+    }
+
+
+    public function updateAdmin(Request $request,$id){
+        $users=User::find($id);
+        $users->email=$request->email;
+        $users->name=$request->name;
+        $users->save();
+        return redirect(route('tables'));
+
+    }
+
+
     public function getDataManager(){
        $admins= Manager::query();
        return Datatables::of($admins) ->addColumn('action', function ($ud) {
@@ -91,14 +116,7 @@ return view('admins.editReceptionist',[
 
 public function updateRece(updateReceRequest $request,$id){
 
-  /*   if( $request->hasFile('avatar_image')) {
-        unlink(public_path() . '/'.$receptionists->avatar_image);
-        $image = $request->file('avatar_image');
-        $imagename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
-        $filename = $imagename. '_'. time() . '.' . $image->getClientOriginalExtension();
-        $request->image->storeAs('public/image',$filename);
-        $receptionists->update(['avatar_image' => 'image/'.$filename]);
-    } */
+  
     $Receptionists=Receptionist::find($id);
     $email=$Receptionists->email;
     $user=User::where('email','=',$email)->first();
@@ -106,8 +124,6 @@ public function updateRece(updateReceRequest $request,$id){
 
     if($request->hasfile('avatar_image')){
 
-/*         unlink(public_path() . '/storage/avatar_images/'.$Receptionists->avatar_image);
- */        //get file name with ext
 
          $fileNameWithExt=$request->file('avatar_image')->getClientOriginalName();
         
@@ -312,7 +328,7 @@ public function createRece()
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 
-            ]);
+            ])->assignRole('receptionist');
             
            return redirect(route('datatable')); 
         }
@@ -366,7 +382,7 @@ public function createRece()
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
 
-            ]);
+            ])->assignRole('manager');
             
            return redirect(route('tables')); 
         }
@@ -374,9 +390,15 @@ public function createRece()
 
         public function createClient()
         {
+            $countries = countries();
         $admins = Admin::all();
+        $rooms=Room::all();
             return view('admins.createClient',[
-                'admins' => $admins
+                'admins' => $admins,
+                'countries'=>$countries,
+                'rooms'=> $rooms
+
+
             ]); 
             
         }
@@ -411,6 +433,9 @@ public function createRece()
                 'email' => $request->email,
               'country' => $request->country,
               'mobile' => $request->mobile,
+              'password' => Hash::make($request->password),
+              'room_number' => $request->room,
+
                 'gender' => $request->gender,
                 'admin_id' => $request->admin_id,
                 'avatar_image' => $fileNameToStore,
@@ -419,8 +444,9 @@ public function createRece()
             User::create([
                 'name' => $request->name,
                 'email' => $request->email,
+                'password' => Hash::make($request->password),
               
-            ]);
+            ])->assignRole('client');;
             
            return redirect(route('datatables')); 
         }

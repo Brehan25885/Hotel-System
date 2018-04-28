@@ -58,20 +58,6 @@
               </p>
             </li>
             <!-- Menu Body -->
-            <li class="user-body">
-              <div class="row">
-                <div class="col-xs-4 text-center">
-                  <a href="#">Followers</a>
-                </div>
-                <div class="col-xs-4 text-center">
-                  <a href="#">Sales</a>
-                </div>
-                <div class="col-xs-4 text-center">
-                  <a href="#">Friends</a>
-                </div>
-              </div>
-              <!-- /.row -->
-            </li>
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-left">
@@ -120,17 +106,22 @@
       <li class="header">MAIN NAVIGATION</li>
       <li class="active treeview">
         <a href="#">
-          <i class="fa fa-dashboard"></i> <span> Clients</span>
+          <i class="fa fa-dashboard"></i> <span> Manager Dashboard</span>
           <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
           </span>
         </a>
         <ul class="treeview-menu">
-          <li class="active"><a href="/recep"><i class="fa fa-circle-o"></i> Manage Clients</a></li>
-          <li><a href="/reservations"><i class="fa fa-circle-o"></i>Clients Reservations</a></li>
+          <li class="active"><a href="/manageresp"><i class="fa fa-circle-o"></i> Manage Receptionists</a></li>
+          <li><a href="/managerfloor"><i class="fa fa-circle-o"></i> Manage Floors</a></li>
+          <li><a href="/managerroom"><i class="fa fa-circle-o"></i> Manage Rooms</a></li>
+          <li><a href="/indexClient"><i class="fa fa-circle-o"></i> Manage Clients</a></li>
+
+
         </ul>
       </li>
      
+
 
 
 
@@ -150,12 +141,11 @@
       <small>Control panel</small>
     </h1>
     <ol class="breadcrumb">
-      <li><a href="/home"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="/home"><i class="fa fa-dashboard"></i> Home</a></li>
       <li><a href="/indexManager"><i class="fa fa-dashboard"></i> admin</a></li>
       <li><a href="/recep"><i class="fa fa-dashboard"></i> Receptionist</a></li>
       <li><a href="#"><i class="fa fa-dashboard"></i> client</a></li>
       <li><a href="/indexManager"><i class="fa fa-dashboard"></i> manager</a></li>
-
       <li class="active">Dashboard</li>
     </ol>
   </section>
@@ -171,6 +161,7 @@
  <script src="//code.jquery.com/jquery.js"></script>
         <!-- DataTables -->
         <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+        <script src="//cdn.datatables.net/plug-ins/1.10.16/api/fnReloadAjax.js"></script>
         <!-- Bootstrap JavaScript -->
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <!-- App scripts -->
