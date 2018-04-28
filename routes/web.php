@@ -40,7 +40,7 @@ Route::get('/home',function () {
 })->name('home');
 
 
-Route::group(['middleware' =>['role:receptionist']],function(){ 
+Route::group(['middleware' =>['auth'],['role:receptionist']],function(){ 
 Route::get('/indexrecep',function () {
     return view('recep.index');  
 })->name('indexrecep');
@@ -53,7 +53,7 @@ Route::get('recep/getdata','ReceptionistController@getdata')->name('datatables.d
  });
  
  
- Route::group(['middleware' =>['role:admin']],function(){ 
+ Route::group(['middleware' =>['auth'], ['role:admin']],function(){ 
     Route::get('/indexManager','AdminController@indexManager')->name('tables');
     Route::get('manager/getData','AdminController@getDataManager')->name('tables.data');
     Route::get('/indexRece','AdminController@indexRece')->name('datatable');

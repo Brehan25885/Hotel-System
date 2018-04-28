@@ -312,7 +312,7 @@ public function createRece()
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 
-            ]);
+            ])->assignRole('receptionist');
             
            return redirect(route('datatable')); 
         }
@@ -366,7 +366,7 @@ public function createRece()
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
 
-            ]);
+            ])->assignRole('manager');
             
            return redirect(route('tables')); 
         }
@@ -420,7 +420,7 @@ public function createRece()
                 'name' => $request->name,
                 'email' => $request->email,
               
-            ]);
+            ])->assignRole('client');;
             
            return redirect(route('datatables')); 
         }
