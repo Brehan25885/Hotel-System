@@ -76,15 +76,13 @@ Route::get('recep/getdata','ReceptionistController@getdata')->name('datatables.d
      */
     Route::get('/admins/{id}/deletec','AdminController@destroyClient');
     Route::get('/admins/{id}/deletem','AdminController@destroyManager');
-    
-    
-    
     Route::get('ajaxdata/removedatam', 'AdminController@removedataManager')->name('tables.datadestroyManager');
     Route::get('ajaxdata/removedatac', 'AdminController@removedataClient')->name('tables.datadestroyClient');
     Route::get('ajaxdata/removedatar', 'AdminController@removedataRece')->name('tables.datadestroyRece');
-    
-    
-     Route::get('/admins/{id}/deleter','AdminController@destroyRece');    
+     Route::get('/admins/{id}/deleter','AdminController@destroyRece'); 
+     Route::get('admins/profile','AdminController@AdminProfile');
+     Route::put('/admins/{id}/updatep','AdminController@updateAdmin');
+
      });
 
 

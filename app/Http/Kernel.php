@@ -60,7 +60,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
-
+        'jwt.auth' => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
     
     
