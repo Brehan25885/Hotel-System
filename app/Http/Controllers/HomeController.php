@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Auth;
+use App\Client;
 class HomeController extends Controller
 {
     /**
@@ -22,7 +23,11 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('home');
+    {   $email=Auth::user()->email;
+        $client=Client::where('email',$email)->get();
+        
+        $id=$client[0]->id;
+        
+        return redirect()->route('clients.show', ['id' => $id]);
     }
 }

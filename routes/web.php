@@ -24,20 +24,27 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//Route::get('/home', 'HomeController@index')->name('home');
+ //for client part
+ Route::resource('clients','ClientsController');
+ Route::resource('rooms','RoomsController');
+ Route::resource('getrooms','GetroomsController');
+ Route::get('reservations/rooms/{room}/{client}','ClientsController@createRes');
+ Route::post('reservations','ClientsController@storeRes');
+ //
+ Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/login/custom',[
+ Route::post('/login/custom',[
     'uses'=>"LoginController@login",
     'as'=>'login.custom'
-]);
+ ]);
 
 
 
 
-Route::get('/home',function () {
+/*Route::get('/home',function () {
     return view('home');
     
-})->name('home');
+})->name('home');*/
 
 
 Route::group(['middleware' =>['auth'],['role:receptionist']],function(){ 
@@ -81,6 +88,8 @@ Route::get('recep/getdata','ReceptionistController@getdata')->name('datatables.d
     Route::get('ajaxdata/removedatar', 'AdminController@removedataRece')->name('tables.datadestroyRece');
      Route::get('/admins/{id}/deleter','AdminController@destroyRece');    
      });
+      //for client part
+     Route::resource('clients','ClientsController');
 
 
  

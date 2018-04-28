@@ -15,4 +15,15 @@ class Client extends Model
     {
         return $this->belongsTo(Admin::class);
     }
+    
+    protected $attributes = [
+        'national_id' => '0',
+        'client_accompany_no'=>'0',
+        'room_number'=>'0',
+        'is_approved'=>'0',
+        'paid_price'=>'0',
+        'recep_id' =>'0',
+        'admin_id'=>'0'
+    ];
+
 }

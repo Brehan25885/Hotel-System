@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/home' ;
 
     /**
      * Create a new controller instance.
@@ -68,7 +68,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data,$fileName)
     {
-        Client::create(['name' => $data['name'],
+       /* Client::create(['name' => $data['name'],
         'email' => $data['email'],
        'password' => Hash::make($data['password']),
        'mobile'=>$data['mobile'],
@@ -76,8 +76,30 @@ class RegisterController extends Controller
        'avatar_image' => $fileName,
         'gender'=>$data['gender'],
         'is_approved'=>0
-]); 
-        return User::create([
+       ]); */
+
+       $data=[
+        'name' => $data['name'],
+        'email' => $data['email'],
+        'password' => Hash::make($data['password']),
+        'mobile'=>$data['mobile'],
+        'country'=>$data['country'],
+        'avatar_image' => $fileName,
+        'gender'=>$data['gender'],
+        'is_approved'=>0
+
+       ];
+       $newClient=new Client($data);
+       $newClient->save();
+       $id=$newClient->id;
+
+       $userData=[
+
+       ];
+
+
+      
+        return  User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
