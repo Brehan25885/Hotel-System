@@ -75,6 +75,23 @@ $(function() {
             return false;
         }
     }); 
+    $(document).on('click', '.ban', function(){
+        var id = $(this).attr('id');
+       
+            $.ajax({
+                url:"{{route('RoomController.ban')}}",
+                mehtod:"get",
+                data:{id:id},
+                success:function(data)
+                {
+                    $('.ban').val('unban');
+                    //console.log(id);
+                    //alert(data);
+                    $('#users-table').DataTable().ajax.reload();
+                    
+                }
+            })
+    }); 
   
 });
 </script>

@@ -4,11 +4,14 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Cog\Contracts\Ban\Bannable as BannableContract;
+use Cog\Laravel\Ban\Traits\Bannable;
 use Spatie\Permission\Traits\HasRoles;
-class User extends Authenticatable
+class User extends Authenticatable implements BannableContract
 {
     use Notifiable;
     use HasRoles;
+    use Bannable;
 
     /**
      * The attributes that are mass assignable.
@@ -42,4 +45,13 @@ public function room()
 {
    return $this->hasMany('App\Room');
 }
+ /**
+     * Determine if BannedAtScope should be applied by default.
+     *
+     * @return bool
+     */
+/*public function shouldApplyBannedAtScope()
+{
+    return true;
+}*/
 }

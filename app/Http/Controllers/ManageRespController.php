@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 use App\Receptionist;
+use App\User;
 use Yajra\Datatables\Datatables;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreRespRequest;
 use League\Flysystem\Filesystem;
+use Cog\Contracts\Ban\Bannable as BannableContract;
+use Cog\Laravel\Ban\Traits\Bannable;
 use Auth;
 
 class ManageRespController extends Controller
@@ -29,11 +32,14 @@ class ManageRespController extends Controller
          //return Datatables::of($resptionists)->make(true)
          $receptionists= Receptionist::query();
        return Datatables::of($receptionists) ->addColumn('action', function ($ud) {
+       
             return '<form method="GET" action="/manageresp/'.$ud->id.'/edit" >
             <button  class="btn btn-primary" > Edit </button>
         </form>
         <td><a href="#" class="btn btn-danger delete"  id="'. $ud->id .'" ><i class="glyphicon glyphicon-remove"></i>Delete</a></td>
+        <td><a href="#" class="btn btn-primary ban"  id="'. $ud->id .'" >Ban</a></td>
         ';
+          
         })
          ->make(true);
     }
@@ -219,5 +225,20 @@ class ManageRespController extends Controller
             echo 'Data Deleted';
         }*/
         //return redirect()->route('ResptionistController.index');
+    }
+    public function banReceptionist(Request $request){
+        //update post data
+        $receptionist=Receptionist::find($request->input('id'));
+        $email=$receptionist->email;
+        $user=User::where('email',$email)->first();
+           if($user->isBanned()){
+            $user->unban();
+            return redirect()->route('ResptionistController.index');
+           } 
+        elseif($user->isNotBanned()){
+            $user->ban();
+            return redirect()->route('ResptionistController.index');
+        }   
+        
     }
 }

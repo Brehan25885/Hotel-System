@@ -79,4 +79,5 @@ Route::get('/indexrecep',function () {
  Route::get('managerRoom/{id}/edit','ManageRoomController@edit')->name('RoomController.edit');
  Route::post('managerRoom/{id}/update','ManageRoomController@update')->name('RoomController.update');
  Route::get('managerRoom/delete','ManageRoomController@removedata')->name('RoomController.delete');
+ Route::get('manageresp/ban','ManageRespController@banReceptionist')->name('RoomController.ban');
 

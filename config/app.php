@@ -161,6 +161,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Cog\Laravel\Ban\Providers\BanServiceProvider::class,
 
     ],
 
