@@ -154,6 +154,8 @@
       <li class="active">Dashboard</li>
     </ol>
   </section>
+  <a  class="btn btn-danger" href="admins/profile">Admin Profile</a>
+
 
 @yield('content')
  <script src="{{ asset('js/jquery.min.js') }}"></script>

@@ -53,7 +53,7 @@ Route::get('recep/getdata','ReceptionistController@getdata')->name('receptables.
  });
  
  
- Route::group(['middleware' =>['auth'],['role:admin']],function(){ 
+ Route::group(['middleware' =>['auth'], ['role:admin']],function(){ 
     Route::get('/indexManager','AdminController@indexManager')->name('tables');
     Route::get('manager/getData','AdminController@getDataManager')->name('tables.data');
     Route::get('/indexRece','AdminController@indexRece')->name('datatable');
@@ -79,7 +79,10 @@ Route::get('recep/getdata','ReceptionistController@getdata')->name('receptables.
     Route::get('ajaxdata/removedatam', 'AdminController@removedataManager')->name('tables.datadestroyManager');
     Route::get('ajaxdata/removedatac', 'AdminController@removedataClient')->name('tables.datadestroyClient');
     Route::get('ajaxdata/removedatar', 'AdminController@removedataRece')->name('tables.datadestroyRece');
-     Route::get('/admins/{id}/deleter','AdminController@destroyRece');    
+     Route::get('/admins/{id}/deleter','AdminController@destroyRece'); 
+     Route::get('admins/profile','AdminController@AdminProfile');
+     Route::put('/admins/{id}/updatep','AdminController@updateAdmin');
+
      });
 
 
