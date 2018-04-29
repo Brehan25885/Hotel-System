@@ -23,7 +23,7 @@
                 <tr>
                    <td>{{$room->number}}</td>
                    <td>{{$room->capacity}}</td>
-                   <td>{{$room->price/100}}</td>
+                   <td>{{$room->price}}</td>
                    <td><a href="/reservations/rooms/{{$room->id}}/{{$client->id}}" class="edit-modal btn btn-info">
                    <span class="glyphicon glyphicon-edit"></span> Make Reservation
                    </a></td>

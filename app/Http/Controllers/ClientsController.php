@@ -176,7 +176,7 @@ class ClientsController extends Controller
             'paid_price' => $request->roomPrice,
             
         ];
-        
+         
         $client->update($data);
 
         //update room to reserved
@@ -184,8 +184,8 @@ class ClientsController extends Controller
         
          $room->is_reserved=1;
          $room->save();
-         dd('reserved successfully');
-        return redirect()->route('reservations.showRes',['id'=>$request->clientId]);
+         
+        return redirect()->route('clients.showRes',['id'=>$request->clientId]);
 
     }
 

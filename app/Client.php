@@ -9,7 +9,7 @@ class Client extends Model
     protected $fillable = [
         'name', 'email', 'password','is_approved',
         'room_number','client_accompany_no','mobile',
-        'country','gender',  'avatar_image',
+        'country','gender',  'avatar_image','paid_price'
     ];
     public function admin()
     {
