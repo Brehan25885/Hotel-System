@@ -160,7 +160,7 @@ class ClientsController extends Controller
         $token = $request->stripeToken;
         
         $charge = \Stripe\Charge::create([
-          'amount' => $request->roomPrice,
+          'amount' => $request->roomPrice *100,
           'currency' => 'usd',
           'description' => 'Example charge',
           'source' => $token,
@@ -178,6 +178,7 @@ class ClientsController extends Controller
         ];
          
         $client->update($data);
+        
 
         //update room to reserved
          $room=Room::find($request->roomId);
